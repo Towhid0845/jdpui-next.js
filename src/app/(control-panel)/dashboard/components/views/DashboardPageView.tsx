@@ -33,6 +33,7 @@ import {
 	DashboardVacancyDataResponse,
 	DashboardViewsResponse,
 	WeeklyStats,
+	getDashboardBsOpporChart,
 	getDashboardCandidateChart,
 	getDashboardCandidatesAndProfiles,
 	getDashboardPendingBuyCandidateList,
@@ -40,8 +41,8 @@ import {
 	getDashboardSalesStatistics,
 	getDashboardUserConsumption,
 	getDashboardVacancyChart,
-	getDashboardVacancyData,
-	getDashboardViews
+	getDashboardVacancyData
+	// getDashboardViews
 } from '@/api/services/dashboard';
 import { NotificationItem, getNotifications } from '@/api/services/notifications';
 import DashboardHeader from '../ui/DashboardHeader';
@@ -321,10 +322,7 @@ function DashboardPageView() {
 	const isRecruiter = accountType === 1;
 	const allowDashboard = isCompany || isRecruiter;
 
-	const t = useCallback(
-		(key: string, fallback: string) => getLabel(key, fallback),
-		[getLabel]
-	);
+	const t = useCallback((key: string, fallback: string) => getLabel(key, fallback),[getLabel]);
 
 	useEffect(() => {
 		if (!isReady || !user) return;
@@ -343,7 +341,7 @@ function DashboardPageView() {
 
 	const { data: viewsData } = useQuery({
 		queryKey: ['dashboard', 'views'],
-		queryFn: getDashboardViews,
+		queryFn: getDashboardBsOpporChart,
 		enabled: allowDashboard
 	});
 
@@ -533,13 +531,43 @@ function DashboardPageView() {
 
 	const salesOptions = useMemo(
 		() => ({
-			chart: { type: 'area', toolbar: { show: false }, sparkline: { enabled: true } },
-			stroke: { curve: 'smooth', width: 2 },
-			fill: { type: 'gradient', gradient: { opacityFrom: 0.4, opacityTo: 0.05 } },
-			colors: ['#28C76F'],
-			dataLabels: { enabled: false },
-			xaxis: { categories: MONTH_LABELS },
-			tooltip: { enabled: false }
+			// chart: { type: 'area', toolbar: { show: false }, sparkline: { enabled: false } },
+			// stroke: { curve: 'smooth', width: 2 },
+			// fill: { type: 'gradient', gradient: { opacityFrom: 0.4, opacityTo: 0.05 } },
+			// colors: ['#28C76F'],
+			// dataLabels: { enabled: false },
+			// xaxis: { categories: MONTH_LABELS },
+			// tooltip: { enabled: false }
+			chart: { 
+            type: 'area', 
+            toolbar: { show: false },
+            // Disable sparkline to show axes/labels
+            sparkline: { enabled: false }, 
+            fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+        },
+        stroke: { curve: 'smooth', width: 2 },
+        fill: { 
+            type: 'gradient', 
+            gradient: { opacityFrom: 0.4, opacityTo: 0.05 } 
+        },
+        colors: ['#28C76F'],
+        dataLabels: { enabled: false },
+        xaxis: { 
+            categories: MONTH_LABELS, // Ensure this array has 12 names
+            labels: {
+                show: true,
+                style: { colors: '#64748b', fontSize: '12px' }
+            },
+            axisBorder: { show: false },
+            axisTicks: { show: false }
+        },
+        yaxis: { show: false }, // Keep Y-axis hidden for a clean look
+        grid: { show: false },  // Hide background lines
+        tooltip: { 
+            enabled: true,
+            theme: 'light',
+            x: { show: true }
+        }
 		}),
 		[]
 	);
@@ -876,13 +904,26 @@ function DashboardPageView() {
 					) : (
 						<Paper className="rounded-2xl p-6 shadow-sm lg:col-span-6">
 							<CardHeader title={t('sales-value', 'Sales Value')} subtitle={t('this-year', 'This year')} />
-							<div className="mt-4">
-								<ReactApexChart
-									type="area"
-									height={160}
-									options={salesOptions}
-									series={salesSeries}
-								/>
+							<div className="mt-4 flex items-end gap-4">
+								<div className="text-left pb-4">
+									<Typography variant="h6" className="font-bold">
+										{salesStats?.ThisMonth || 0}
+									</Typography>
+									<Typography 
+										variant="caption" 
+										className={salesStats?.GrowthRate >= 0 ? "text-green-600" : "text-red-600"}
+									>
+										({salesStats?.GrowthRate || 0}%)
+									</Typography>
+								</div>
+								<div className='flex-1'>
+									<ReactApexChart
+										type="area"
+										height={160}
+										options={salesOptions}
+										series={salesSeries}
+									/>
+								</div>
 							</div>
 						</Paper>
 					)}

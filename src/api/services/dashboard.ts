@@ -82,9 +82,7 @@ export const getDashboardVacancyData = async (): Promise<DashboardVacancyDataRes
 };
 
 export const getDashboardCandidatesAndProfiles = async (): Promise<DashboardCandidatesProfilesResponse> => {
-	return apiClient
-		.get('api/Dashboard/CandidatesAndProfiles')
-		.json<DashboardCandidatesProfilesResponse>();
+	return apiClient.get('api/Dashboard/CandidatesAndProfiles').json<DashboardCandidatesProfilesResponse>();
 };
 
 export const getDashboardPendingBuyCandidateList = async (): Promise<DashboardPendingCandidate[]> => {
@@ -104,11 +102,17 @@ export const getDashboardUserConsumption = async (): Promise<DashboardUserConsum
 };
 
 export const getDashboardVacancyChart = async (): Promise<DashboardVacancyChartResponse> => {
-	return apiClient
-		.get('api/VacancyChart/GetChartVacancyManager')
-		.json<DashboardVacancyChartResponse>();
+	return apiClient.get('api/VacancyChart/GetChartVacancyManager').json<DashboardVacancyChartResponse>();
 };
 
 export const getDashboardCandidateChart = async (): Promise<DashboardCandidateChartResponse> => {
 	return apiClient.get('api/BasicChartsForRecruiter/').json<DashboardCandidateChartResponse>();
+};
+
+export const getDashboardBsOpporChart = async (): Promise<DashboardViewsResponse> => {
+	return apiClient.get('api/Dashboard/GetBsOpporChart').json<DashboardViewsResponse>();
+};
+
+export const getBasicChartForSearch = async (): Promise<DashboardCandidateChartResponse> => {
+	return apiClient.get('api/BasicChartsForSearch/').json<DashboardCandidateChartResponse>();
 };

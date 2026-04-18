@@ -1,7 +1,10 @@
 'use client';
-
+import { use } from 'react';
 import ProfileDetailPageView from './components/views/ProfileDetailPageView';
-
-export default function ProfileDetailPage({ params }: { params: { id: string } }) {
-	return <ProfileDetailPageView puid={params.id} />;
+type Props = {
+	params: Promise<{ id: string }>;
+};
+export default function ProfileDetailPage({ params }: Props) {
+	const unwrappedParams = use(params);
+	return <ProfileDetailPageView puid={unwrappedParams.id} />;
 }

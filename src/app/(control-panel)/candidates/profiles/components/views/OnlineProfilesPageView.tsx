@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import FusePageSimple from '@fuse/core/FusePageSimple';
 import FuseLoading from '@fuse/core/FuseLoading';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
+import useNavigate from '@fuse/hooks/useNavigate';
 import { styled } from '@mui/material/styles';
 import {
 	Alert,
@@ -24,7 +25,7 @@ import useThemeMediaQuery from '@fuse/hooks/useThemeMediaQuery';
 import PageBreadcrumb from '@/components/PageBreadcrumb';
 import { useSystemData } from '@/contexts/SystemDataContext';
 import { searchProfiles } from '@/api/services/profiles';
-import { getDashboardCandidateChart } from '@/api/services/dashboard';
+import { getBasicChartForSearch } from '@/api/services/dashboard';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
 	'& .FusePageSimple-header': {
@@ -100,11 +101,12 @@ function OnlineProfilesPageView() {
 	const languages = useMemo(() => typeInfos['System.Language'] || [], [typeInfos]);
 	const countryNames = useMemo(() => countries.map((c) => c.Name || c.ValueText || '').filter(Boolean), [countries]);
 	const languageNames = useMemo(() => languages.map((l) => l.Name || l.ValueText || '').filter(Boolean), [languages]);
+	const navigate = useNavigate();
 
 	const searchPayload = useMemo(
 		() => ({
 			PageSize: pageSize,
-			PageNumber: pageNumber + 1,
+			PageNumber: pageNumber,
 			SearchText: searchText || undefined,
 			Countries: selectedCountries.length
 				? selectedCountries
@@ -138,13 +140,16 @@ function OnlineProfilesPageView() {
 
 	const { data: chartData } = useQuery({
 		queryKey: ['candidate-chart'],
-		queryFn: getDashboardCandidateChart,
+		// queryFn: getDashboardCandidateChart,
+		queryFn: getBasicChartForSearch,
 		enabled: isReady
 	});
 
 	const profiles = useMemo(() => profileData?.Result || [], [profileData]);
-	const totalItems = profileData?.Paging?.TotalItems || 0;
+	// const totalItems = profileData?.Paging?.TotalItems || 0;
+	const totalItems = profileData?.Count || 0;
 	const totalPages = Math.ceil(totalItems / pageSize);
+
 
 	useEffect(() => {
 		setPageNumber(0);
@@ -269,7 +274,7 @@ function OnlineProfilesPageView() {
 						</div>
 					) : (
 						<>
-							<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+							{/* <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 								{profiles.map((profile) => {
 									const displayName =
 										profile.FullName ||
@@ -277,9 +282,12 @@ function OnlineProfilesPageView() {
 										'Unknown';
 									return (
 										<Paper
-											key={profile.Pid || profile.Cid}
+											key={profile.Puid}
 											className="flex flex-col gap-3 rounded-xl border p-4"
 											variant="outlined"
+											onClick={() => {
+												navigate(`/candidates/profiles/${profile.Puid}`);
+											}}
 										>
 											<div className="flex items-start gap-3">
 												<Avatar
@@ -375,6 +383,116 @@ function OnlineProfilesPageView() {
 													variant="outlined"
 												/>
 											)}
+										</Paper>
+									);
+								})}
+							</div> */}
+							<div className="flex flex-col gap-1 border-t border-x overflow-hidden rounded-lg">
+								{profiles.map((profile) => {
+									const displayName =
+										profile.FullName ||
+										`${profile.FirstName || ''} ${profile.LastName || ''}`.trim() ||
+										'Unknown';
+										
+									// Helper to format the relative time (e.g., "1 m ago")
+									const getRelativeTime = (dateString?: string) => {
+										if (!dateString) return '-';
+										const date = new Date(dateString);
+										const now = new Date();
+										const diffInMonths = (now.getFullYear() - date.getFullYear()) * 12 + (now.getMonth() - date.getMonth());
+										return diffInMonths <= 0 ? '1 m ago' : `${diffInMonths} m ago`;
+									};
+
+									return (
+										<Paper
+											key={profile.Puid}
+											className="group flex flex-row items-center gap-4 rounded-none border-b p-4 transition-colors hover:bg-gray-50"
+											variant="elevation"
+											elevation={0}
+											onClick={() => {
+												navigate(`/candidates/profiles/${profile.Puid}`);
+											}}
+										>
+											{/* 1. Avatar Section */}
+											<div className="relative shrink-0">
+												<Avatar
+													src={profile.ProfilePicture || undefined}
+													className="h-12 w-12 border shadow-sm"
+												>
+													{displayName[0]?.toUpperCase()}
+												</Avatar>
+												<div className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white ${profile.AvailabilityStatus === 1 ? 'bg-green-500' : 'bg-orange-500'}`} />
+											</div>
+
+											{/* 2. Info Section (Title & Rating) */}
+											<div className="flex w-1/4 flex-col gap-0.5">
+												<Typography className="truncate font-semibold text-blue-900">
+													{profile.Title || displayName}
+												</Typography>
+												<div className="flex items-center gap-1">
+													<Rating
+														value={profile.Rating || 0}
+														size="small"
+														readOnly
+														sx={{ fontSize: '0.875rem' }}
+													/>
+													<Typography variant="caption" color="text.secondary">
+														({profile.RatingCount || 0})
+													</Typography>
+												</div>
+											</div>
+
+											{/* 3. Verification Status */}
+											<div className="flex flex-1 items-center justify-center">
+												<div className="flex items-center gap-1.5 rounded-md px-2 py-1">
+													<FuseSvgIcon size={18} color={profile.IsVerified || profile.IsEmailVerified ? "success" : "disabled"}>
+														lucide:mail-check
+													</FuseSvgIcon>
+													<Typography 
+														variant="body2" 
+														className={`font-medium ${profile.IsVerified || profile.IsEmailVerified ? "text-green-600" : "text-gray-400"}`}
+													>
+														Verified
+													</Typography>
+												</div>
+											</div>
+
+											{/* 4. Date Section */}
+											<div className="flex flex-1 justify-center">
+												<Typography variant="body2" color="text.secondary">
+													{profile.AvailableFrom ? new Date(profile.AvailableFrom).toLocaleDateString('en-US', {
+														year: 'numeric',
+														month: 'short',
+														day: 'numeric'
+													}) : '-'}
+												</Typography>
+											</div>
+
+											{/* 5. Salary Section */}
+											<div className="flex flex-1 justify-center">
+												<Typography variant="body2" className="font-medium text-gray-700">
+													{profile.MinExpectedSalary 
+														? `${(profile.MinExpectedSalary / 1000).toFixed(0)}K ${profile.MinExpectedSalaryCurrency || 'BDT'}` 
+														: '-'}
+												</Typography>
+											</div>
+
+											{/* 6. Relative Time */}
+											<div className="flex flex-1 justify-center">
+												<Typography variant="body2" color="text.secondary">
+													{getRelativeTime(profile.AvailableFrom)}
+												</Typography>
+											</div>
+
+											{/* 7. Action Section */}
+											<div className="flex shrink-0 items-center pl-4">
+												<button 
+													className="flex h-8 w-8 items-center justify-center rounded-full bg-pink-50 text-pink-500 transition-colors hover:bg-pink-100"
+													onClick={(e) => e.stopPropagation()}
+												>
+													<FuseSvgIcon size={18}>lucide:heart</FuseSvgIcon>
+												</button>
+											</div>
 										</Paper>
 									);
 								})}
