@@ -1,0 +1,5 @@
+<svg id="master-profile" xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15">
+  <rect id="Rectangle_609" data-name="Rectangle 609" width="4" height="10" rx="1" transform="translate(10 3)" fill="#caeafe"/>
+  <rect id="Rectangle_608" data-name="Rectangle 608" width="5" height="12" rx="1" transform="translate(8 2)" fill="#bae2fb"/>
+  <path id="Icon_awesome-id-badge" data-name="Icon awesome-id-badge" d="M9.844,0H1.406A1.407,1.407,0,0,0,0,1.406V13.594A1.407,1.407,0,0,0,1.406,15H9.844a1.407,1.407,0,0,0,1.406-1.406V1.406A1.407,1.407,0,0,0,9.844,0ZM4.219.938H7.031a.469.469,0,0,1,0,.938H4.219a.469.469,0,0,1,0-.937Zm1.406,3.75A1.875,1.875,0,1,1,3.75,6.563,1.877,1.877,0,0,1,5.625,4.688Zm3.281,6.938a.614.614,0,0,1-.656.563H3a.614.614,0,0,1-.656-.562v-.563A1.845,1.845,0,0,1,4.313,9.375h.146a3.018,3.018,0,0,0,2.332,0h.146a1.845,1.845,0,0,1,1.969,1.687Z" fill="#fff"/>
+</svg>

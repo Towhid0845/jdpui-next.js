@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="348" height="115" viewBox="0 0 348 115">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.572" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f6b4a9"/>
+      <stop offset="1" stop-color="#ec456e"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#28a9c4"/>
+      <stop offset="1" stop-color="#3fc1db"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_552" data-name="Rectangle 552" width="348" height="115" rx="10" transform="translate(1117 167)" stroke="#e1e1e1" stroke-width="1" fill="url(#linear-gradient)"/>
+    </clipPath>
+  </defs>
+  <g id="looking-for-job-bg" transform="translate(-1117 -167)">
+    <rect id="Rectangle_531" data-name="Rectangle 531" width="348" height="115" rx="10" transform="translate(1117 167)" fill="url(#linear-gradient-2)"/>
+    <g id="Mask_Group_5" data-name="Mask Group 5" opacity="0.6" clip-path="url(#clip-path)">
+      <circle id="Ellipse_132" data-name="Ellipse 132" cx="60" cy="60" r="60" transform="translate(1490.5 300.636) rotate(180)" fill="url(#linear-gradient-2)"/>
+      <circle id="Ellipse_133" data-name="Ellipse 133" cx="46" cy="46" r="46" transform="matrix(0.259, 0.966, -0.966, 0.259, 1388.027, 92.297)" fill="url(#linear-gradient-2)"/>
+    </g>
+  </g>
+</svg>

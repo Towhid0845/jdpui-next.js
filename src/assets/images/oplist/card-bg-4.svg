@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="348" height="115" viewBox="0 0 348 115">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.431" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#84d1ff"/>
+      <stop offset="1" stop-color="#1eabff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4d7da7"/>
+      <stop offset="1" stop-color="#5695cc"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_553" data-name="Rectangle 553" width="348" height="115" rx="10" stroke="#e1e1e1" stroke-width="1" fill="url(#linear-gradient)"/>
+    </clipPath>
+  </defs>
+  <g id="total-profiles-bg" transform="translate(-1515 -167)">
+    <rect id="Rectangle_532" data-name="Rectangle 532" width="348" height="115" rx="10" transform="translate(1515 167)" fill="url(#linear-gradient-2)"/>
+    <g id="Mask_Group_6" data-name="Mask Group 6" transform="translate(1515 167)" opacity="0.4" clip-path="url(#clip-path)">
+      <circle id="Ellipse_134" data-name="Ellipse 134" cx="60" cy="60" r="60" transform="translate(385 136.636) rotate(180)" fill="url(#linear-gradient-2)"/>
+      <circle id="Ellipse_135" data-name="Ellipse 135" cx="46" cy="46" r="46" transform="matrix(0.259, 0.966, -0.966, 0.259, 282.527, -71.703)" fill="url(#linear-gradient-2)"/>
+    </g>
+  </g>
+</svg>

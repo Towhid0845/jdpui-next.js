@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="40" viewBox="0 0 45 40">
+  <g id="summary-con" transform="translate(-319 -377)">
+    <circle id="Ellipse_104" data-name="Ellipse 104" cx="18" cy="18" r="18" transform="translate(319 377)" fill="#287cc4"/>
+    <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M10.626,11.954A5.977,5.977,0,1,0,4.649,5.977,5.979,5.979,0,0,0,10.626,11.954Zm5.313,1.328H13.652a7.225,7.225,0,0,1-6.052,0H5.313A5.313,5.313,0,0,0,0,18.6v.664a1.993,1.993,0,0,0,1.992,1.992H19.26a1.993,1.993,0,0,0,1.992-1.992V18.6A5.313,5.313,0,0,0,15.939,13.282Z" transform="translate(326 384)" fill="#fff"/>
+    <g id="Rectangle_394" data-name="Rectangle 394" transform="translate(341 396)" fill="#287cc4" stroke="#fbfdff" stroke-width="2">
+      <rect width="23" height="21" rx="4" stroke="none"/>
+      <rect x="1" y="1" width="21" height="19" rx="3" fill="none"/>
+    </g>
+    <path id="Icon_awesome-pen" data-name="Icon awesome-pen" d="M6.322,2.028,9.105,4.812,3.061,10.857.579,11.13A.522.522,0,0,1,0,10.554L.279,8.07,6.322,2.028Zm4.506-.414L9.52.306a1.044,1.044,0,0,0-1.477,0l-1.23,1.23L9.6,4.32l1.23-1.23a1.044,1.044,0,0,0,0-1.477Z" transform="translate(347.295 400.295)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="231" height="115" viewBox="0 0 231 115">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.551" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#d1aaff"/>
+      <stop offset="1" stop-color="#8a5df3"/>
+    </linearGradient>
+    <filter id="Rectangle_551" x="-21.5" y="-19.5" width="276" height="160" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-color="#6d6d6d" flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#42a3db"/>
+      <stop offset="1" stop-color="#60b5e6"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Rectangle_551)">
+        <rect id="Rectangle_551-2" data-name="Rectangle 551" width="231" height="115" rx="10" transform="translate(-0.17)" fill="url(#linear-gradient)"/>
+      </g>
+    </clipPath>
+  </defs>
+  <g id="new-profiles-bg" transform="translate(-549 -83)">
+    <rect id="Rectangle_529" data-name="Rectangle 529" width="231" height="115" rx="10" transform="translate(549 83)" fill="url(#linear-gradient-2)"/>
+    <g id="Mask_Group_4" data-name="Mask Group 4" transform="translate(549.172 83)" opacity="0.85" clip-path="url(#clip-path)">
+      <ellipse id="Ellipse_238" data-name="Ellipse 238" cx="55" cy="60.5" rx="55" ry="60.5" transform="translate(257.828 169) rotate(180)" fill="url(#linear-gradient-2)"/>
+      <ellipse id="Ellipse_239" data-name="Ellipse 239" cx="55" cy="60.5" rx="55" ry="60.5" transform="translate(207.828 42) rotate(180)" fill="url(#linear-gradient-2)"/>
+    </g>
+  </g>
+</svg>

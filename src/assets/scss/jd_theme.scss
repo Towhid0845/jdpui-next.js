@@ -1,0 +1,242 @@
+// font families
+$jdDefaultFont: 'Public Sans', sans-serif;
+
+// typography colors
+$headingTextColor: #5D586C;
+$bodyTextColor: #6F6B7D;
+$mutedTextColor: #6F6B7D;
+$placeholderTextColor: #6F6B7D;
+
+// solid colors
+$white: #FFFFFF;
+
+$primary100: #CFEBFF;
+$primary200: #9ED6FF;
+$primary300: #6EC2FF;
+$primary400: #3DADFF;
+$primaryBase: #0D99FF;
+$primaryHover: #0C8AE5;
+$primaryActive: #0B82D9;
+$primary800: #0A7ACC;
+$primary900: #0A73BF;
+
+$primaryOpacity8: rgba(13, 153, 255, 0.08);
+$primaryOpacity16: rgba(13, 153, 255, 0.16);
+$primaryOpacity24: rgba(13, 153, 255, 0.24);
+$primaryOpacity32: rgba(13, 153, 255, 0.32);
+$primaryOpacity40: rgba(13, 153, 255, 0.40);
+$primaryOpacity48: rgba(13, 153, 255, 0.48);
+
+
+
+$secondary100: #D3F4F4;
+$secondary200: #A7EAE8;
+$secondary300: #7CDFDD;
+$secondary400: #50D5D1;
+$secondaryBase: #24CAC6;
+$secondaryHover: #20B6B2;
+$secondaryActive: #1FACA8;
+$secondary800: #1DA29E;
+$secondary900: #1B9795;
+
+$secondaryOpacity8: rgba(36, 202, 198, 0.08);
+$secondaryOpacity16: rgba(36, 202, 198, 0.16);
+$secondaryOpacity24: rgba(36, 202, 198, 0.24);
+$secondaryOpacity32: rgba(36, 202, 198, 0.32);
+$secondaryOpacity40: rgba(36, 202, 198, 0.40);
+$secondaryOpacity48: rgba(36, 202, 198, 0.48);
+
+
+
+$gray100: #F6F6F7;
+$gray200: #DBDADE;
+$gray300: #C9C7CE;
+$gray400: #B7B5BE;
+$grayBase: #A5A2AD;
+$grayHover: #93909D;
+$grayActive: #817D8D;
+$gray800: #6F6B7D;
+$gray900: #5D586C;
+
+$grayOpacity8: rgba(75, 70, 92, 0.08);
+$grayOpacity16: rgba(75, 70, 92, 0.16);
+$grayOpacity24: rgba(75, 70, 92, 0.24);
+$grayOpacity32: rgba(75, 70, 92, 0.32);
+$grayOpacity40: rgba(75, 70, 92, 0.40);
+$grayOpacity48: rgba(75, 70, 92, 0.48);
+
+
+
+$success100: #D4F4E2;
+$success200: #A9E9C5;
+$success300: #7EDDA9;
+$success400: #53D28C;
+$successBase: #28C76F;
+$successHover: #24B364;
+$successActive: #22A95E;
+$success800: #209F59;
+$success900: #1E9553;
+
+$successOpacity8: rgba(40, 199, 111, 0.08);
+$successOpacity16: rgba(40, 199, 111, 0.16);
+$successOpacity24: rgba(40, 199, 111, 0.24);
+$successOpacity32: rgba(40, 199, 111, 0.32);
+$successOpacity40: rgba(40, 199, 111, 0.40);
+$successOpacity48: rgba(40, 199, 111, 0.48);
+
+
+
+$danger100: #FBDDDD;
+$danger200: #F7BBBB;
+$danger300: #F29899;
+$danger400: #EE7677;
+$dangerBase: #EA5455;
+$dangerHover: #D34C4C;
+$dangerActive: #C74748;
+$danger800: #BB4344;
+$danger900: #AF3F40;
+
+$dangerOpacity8: rgba(234, 84, 85, 0.08);
+$dangerOpacity16: rgba(234, 84, 85, 0.16);
+$dangerOpacity24: rgba(234, 84, 85, 0.24);
+$dangerOpacity32: rgba(234, 84, 85, 0.32);
+$dangerOpacity40: rgba(234, 84, 85, 0.40);
+$dangerOpacity48: rgba(234, 84, 85, 0.48);
+
+
+$warning100: #FFECD9;
+$warning200: #FFD9B4;
+$warning300: #FFB269;
+$warning400: #FFB269;
+$warningBase: #FF9F43;
+$warningHover: #E58F3C;
+$warningActive: #D98739;
+$warning800: #CC7F36;
+$warning900: #BF7732;
+
+$warningOpacity8: rgba(255, 159, 67, 0.08);
+$warningOpacity16: rgba(255, 159, 67, 0.16);
+$warningOpacity24: rgba(255, 159, 67, 0.24);
+$warningOpacity32: rgba(255, 159, 67, 0.32);
+$warningOpacity40: rgba(255, 159, 67, 0.40);
+$warningOpacity48: rgba(255, 159, 67, 0.48);
+
+
+$info100: #CCF5FA;
+$info200: #99ECF6;
+$info300: #66E2F1;
+$info400: #33D9ED;
+$infoBase: #00CFE8;
+$infoHover: #00BAD1;
+$infoActive: #00B0C5;
+$info800: #00A6BA;
+$info900: #009BAE;
+
+$infoOpacity8: rgba(0, 207, 232, 0.08);
+$infoOpacity16: rgba(0, 207, 232, 0.16);
+$infoOpacity24: rgba(0, 207, 232, 0.24);
+$infoOpacity32: rgba(0, 207, 232, 0.32);
+$infoOpacity40: rgba(0, 207, 232, 0.40);
+$infoOpacity48: rgba(0, 207, 232, 0.48);
+
+
+
+$other100: #EBDEF0;
+$other200: #D7BDE2;
+$other300: #C39BD3;
+$other400: #AF7AC5;
+$otherBase: #9B59B6;
+$otherHover: #8B50A4;
+$otherActive: #844C9B;
+$other800: #7C4792;
+$other900: #744388;
+
+$otherOpacity8: rgba(155, 89, 182, 0.08);
+$otherOpacity16: rgba(155, 89, 182, 0.16);
+$otherOpacity24: rgba(155, 89, 182, 0.24);
+$otherOpacity32: rgba(155, 89, 182, 0.32);
+$otherOpacity40: rgba(155, 89, 182, 0.40);
+$otherOpacity48: rgba(155, 89, 182, 0.48);
+
+
+
+$primaryDarkBlue100: #D2DCE5;
+$primaryDarkBlue200: #A5BACB;
+$primaryDarkBlue300: #7997B1;
+$primaryDarkBlue400: #4C7597;
+$primaryDarkBlueBase: #1F527D;
+$primaryDarkBlueHover: #1C4A71;
+$primaryDarkBlueActive: #1A466A;
+$primaryDarkBlue800: #194264;
+$primaryDarkBlue900: #173D5E;
+
+$primaryDarkBlueOpacity8: rgba(31, 82, 125, 0.08);
+$primaryDarkBlueOpacity16: rgba(31, 82, 125, 0.16);
+$primaryDarkBlueOpacity24: rgba(31, 82, 125, 0.24);
+$primaryDarkBlueOpacity32: rgba(31, 82, 125, 0.32);
+$primaryDarkBlueOpacity40: rgba(31, 82, 125, 0.40);
+$primaryDarkBlueOpacity48: rgba(31, 82, 125, 0.48);
+
+
+
+// Some special solid colors
+$disabledBtnBgColor: $gray200;
+$disabledBtnBorderColor: $gray200;
+$disabledBtnTextColor: $mutedTextColor;
+
+$darkColor: #242745;
+$semiDarkColor: #4B4B4B;
+$facebookColor: #4267B2;
+$twitterColor: #1DA1F2;
+$googleColor: #DB4437;
+$cardBg: #FFFFFF;
+$bodyBg: #F8F7FA;
+$dividerBg: #DBDADE;
+$lightColor: #DBDADE;
+$overlayColor: rgba(75, 70, 92, 0.68);
+
+
+// gradient colors
+$primaryGradient: linear-gradient(45deg, #0D99FF 0%, #0B82D9 100%);
+$secondaryGradient: linear-gradient(45deg, #82868B 0%, #9CA0A4 100%);
+$successGradient: linear-gradient(45deg, #28C76F 0%, #48DA89 100%);
+$dangerGradient: linear-gradient(45deg, #EA5455 0%, #F08182 100%);
+$warningGradient: linear-gradient(45deg, #FF9F43 0%, #FFB976 100%);
+$infoGradient: linear-gradient(45deg, #00CFE8 0%, #1CE7FF 100%);
+
+
+$display1_FontWeight: 700;
+$display1_FontSize: 64px;
+$display1_LineHeight: 70px;
+
+$display3_FontWeight: 700;
+$display3_FontSize: 48px;
+$display3_LineHeight: 52px;
+
+$display4_FontWeight: 700;
+$display4_FontSize: 26px;
+$display4_LineHeight: 30px;
+
+$h1_FontWeight: 600;
+$h1_FontSize: 55px;
+$h1_LineHeight: 82px;
+
+$h2_FontWeight: 600;
+$h2_FontSize: 40px;
+$h2_LineHeight: 60px;
+
+$h3_FontWeight: 600;
+$h3_FontSize: 26px;
+$h3_LineHeight: 36px;
+
+$h4_FontWeight: 600;
+$h4_FontSize: 26px;
+$h4_LineHeight: 34px;
+
+$paragraphLeadFontWeight: 400;
+$paragraphLeadFontSize: 24px;
+$paragraphLeadLineHeight: 36px;
+
+$paragraphFontWeight: 400;
+$paragraphFontSize: 20px;
+$paragraphLineHeight: 28px;

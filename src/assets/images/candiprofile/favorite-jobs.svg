@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="favorite-jobs" transform="translate(-323 -2210)">
+    <circle id="Ellipse_168" data-name="Ellipse 168" cx="15" cy="15" r="15" transform="translate(323 2210)" fill="#287cc4"/>
+    <path id="Icon_ionic-md-star" data-name="Icon ionic-md-star" d="M14.77,21.268l6.781,4.091-1.794-7.717,5.986-5.189-7.891-.678L14.77,4.5l-3.082,7.275L3.8,12.453l5.986,5.189L7.988,25.359Z" transform="translate(323.699 2209.07)" fill="#fff"/>
+  </g>
+</svg>

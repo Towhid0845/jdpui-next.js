@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="201" height="188" viewBox="0 0 201 188">
+  <g id="serive_image_placeholder" transform="translate(-726 -442)">
+    <g id="Rectangle_898" data-name="Rectangle 898" transform="translate(726 442)" fill="#f3f3f3" stroke="#d1d1d1" stroke-width="0.5" stroke-dasharray="3 2">
+      <rect width="201" height="188" rx="8" stroke="none"/>
+      <rect x="0.25" y="0.25" width="200.5" height="187.5" rx="7.75" fill="none"/>
+    </g>
+    <g id="Icon_feather-image" data-name="Icon feather-image" transform="translate(789.5 458.595)">
+      <path id="Path_8401" data-name="Path 8401" d="M11.635,4.5H61.582a7.135,7.135,0,0,1,7.135,7.135V61.582a7.135,7.135,0,0,1-7.135,7.135H11.635A7.135,7.135,0,0,1,4.5,61.582V11.635A7.135,7.135,0,0,1,11.635,4.5Z" transform="translate(0 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+      <path id="Path_8402" data-name="Path 8402" d="M21.2,15.851A5.351,5.351,0,1,1,15.851,10.5,5.351,5.351,0,0,1,21.2,15.851Z" transform="translate(8.27 8.27)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+      <path id="Path_8403" data-name="Path 8403" d="M64.582,32.838,46.744,15,7.5,54.244" transform="translate(4.135 14.473)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+    </g>
+  </g>
+</svg>

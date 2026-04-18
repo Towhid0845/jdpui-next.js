@@ -1,0 +1,56 @@
+{
+    "data": {
+        "appUrl": "http://localhost:63092",
+        "portalUrl": "http://www.jobdesk.cloud",
+        "apiUrl": "http://www.jobdesk.cloud",
+        "appDomain": "www.joblistbd.com",
+        "appName": "JoblistBD",
+        "appSourceName": "joblistbd",
+        "appLogo": "logo",
+        "appAddress": "15 Lake Dr. Road, Sector 7, Uttara Dhaka, Bangladesh",
+        "appEmail": "info@joblistbd.com",
+        "appPhone": "+8801735865174",
+        "appPhone2": "+8801735865174",
+        "appSupportEmail": "support@joblistbd.com",
+        "appFBLink": "fb",
+        "appTwitterLink": "tw",
+        "appLinkedinLink": "ln",
+        "appInstagramLink": "ins",
+        "appVersion": "1.1.0",
+        "appCountryIso2": "BD",
+        "appCountryName": "Bangladesh",
+        "appDefaultLangCode": "EN",
+        "appLocalLangCode": "BN",
+        "appLocalDialCode": "+880",
+        "currency": "BDT",
+        "currencyName": "Bangladeshi Taka",
+        "currencySymbole": "&#x9f3;",
+        "SupportedLanguages": [
+            {
+                "CountryCode": "BD",
+                "Icon": "",
+                "Id": 1,
+                "ISO2": "bn",
+                "NativeName": "বাংলা"
+            },
+            {
+                "CountryCode": "BD",
+                "Icon": "",
+                "Id": 2,
+                "ISO2": "en",
+                "NativeName": "English"
+            }
+        ],
+        "logo": "../../../../assets/images/white_label_images/logo3.png",
+        "logoMedium":"../../../../assets/images/white_label_images/logo3.png",
+        "theme": "linear-gradient(45deg, #4685A3 9%, #57ac60 100%)",
+        "themeClass":"app-theme",
+        "chartCSS":{
+            "borderColor":"rgb(87, 172, 96)",
+            "backgroundColor":"rgb(87, 172, 96, 0.3)",
+            "pointBackgroundColor":"rgb(87, 172, 96)"
+        },
+        "fontColor": "white",
+        "isWhiteLabel": false
+    }
+}

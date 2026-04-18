@@ -1,0 +1,18 @@
+<svg id="bg4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="501" height="216" viewBox="0 0 501 216">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.484" y1="1.207" x2="0.459" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#eef5fb"/>
+      <stop offset="1" stop-color="#bfd9f0"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_668" data-name="Rectangle 668" width="501" height="216" rx="10" fill="none" stroke="#3e82bc" stroke-width="5"/>
+    </clipPath>
+  </defs>
+  <rect id="Rectangle_667" data-name="Rectangle 667" width="501" height="216" rx="10" fill="url(#linear-gradient)"/>
+  <g id="Mask_Group_55" data-name="Mask Group 55" clip-path="url(#clip-path)">
+    <path id="Path_7890" data-name="Path 7890" d="M-23041.605-22461.293s77.908-83.014,164.475-73.008,155.1-22.014,155.1-22.014v95.021Z" transform="translate(23227.354 22681.672)" fill="rgba(255,255,255,0.28)"/>
+    <ellipse id="Ellipse_199" data-name="Ellipse 199" cx="73.5" cy="67" rx="73.5" ry="67" transform="translate(-29 -32)" fill="rgba(255,255,255,0.2)" opacity="0.77"/>
+    <ellipse id="Ellipse_200" data-name="Ellipse 200" cx="65" cy="59" rx="65" ry="59" transform="translate(45 -79)" fill="rgba(255,255,255,0.2)" opacity="0.77"/>
+    <path id="Path_7891" data-name="Path 7891" d="M16.21,57.439s-44.341,49.279,13.651,68.2,116.906-16.9,147.572,9.893,94.19,56.314,132.7,13.948S280.1,0,280.1,0Z" transform="translate(210.468 -124.626) rotate(-6)" fill="rgba(255,255,255,0.2)" opacity="0.65"/>
+  </g>
+</svg>
