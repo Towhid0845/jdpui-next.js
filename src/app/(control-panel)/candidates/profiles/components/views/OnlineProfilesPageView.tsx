@@ -274,119 +274,6 @@ function OnlineProfilesPageView() {
 						</div>
 					) : (
 						<>
-							{/* <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-								{profiles.map((profile) => {
-									const displayName =
-										profile.FullName ||
-										`${profile.FirstName || ''} ${profile.LastName || ''}`.trim() ||
-										'Unknown';
-									return (
-										<Paper
-											key={profile.Puid}
-											className="flex flex-col gap-3 rounded-xl border p-4"
-											variant="outlined"
-											onClick={() => {
-												navigate(`/candidates/profiles/${profile.Puid}`);
-											}}
-										>
-											<div className="flex items-start gap-3">
-												<Avatar
-													src={profile.ProfileImage || undefined}
-													className="h-12 w-12"
-												>
-													{displayName[0]?.toUpperCase()}
-												</Avatar>
-												<div className="flex flex-1 flex-col">
-													<div className="flex items-center gap-2">
-														<Typography className="font-medium">{displayName}</Typography>
-														{profile.IsVerified && (
-															<FuseSvgIcon
-																size={16}
-																color="success"
-															>
-																lucide:badge-check
-															</FuseSvgIcon>
-														)}
-													</div>
-													{profile.Title && (
-														<Typography
-															variant="body2"
-															color="text.secondary"
-															className="line-clamp-1"
-														>
-															{profile.Title}
-														</Typography>
-													)}
-												</div>
-											</div>
-
-											{profile.Skills && profile.Skills.length > 0 && (
-												<div className="flex flex-wrap gap-1">
-													{profile.Skills.slice(0, 4).map((skill, i) => (
-														<Chip
-															key={i}
-															label={skill}
-															size="small"
-															variant="outlined"
-														/>
-													))}
-													{profile.Skills.length > 4 && (
-														<Chip
-															label={`+${profile.Skills.length - 4}`}
-															size="small"
-														/>
-													)}
-												</div>
-											)}
-
-											<div className="flex items-center justify-between">
-												<div className="flex items-center gap-2">
-													{profile.Country && (
-														<Typography
-															variant="caption"
-															color="text.secondary"
-														>
-															{profile.Country}
-														</Typography>
-													)}
-													{profile.Rating !== undefined && profile.Rating > 0 && (
-														<Rating
-															value={profile.Rating}
-															precision={0.5}
-															size="small"
-															readOnly
-														/>
-													)}
-												</div>
-												{profile.Salary !== undefined && profile.Salary > 0 && (
-													<Typography
-														variant="body2"
-														className="font-medium"
-													>
-														{profile.SalaryCurrency || ''}{' '}
-														{profile.Salary?.toLocaleString()}
-													</Typography>
-												)}
-											</div>
-
-											{profile.AvailabilityStatusText && (
-												<Chip
-													label={profile.AvailabilityStatusText}
-													size="small"
-													color={
-														profile.AvailabilityStatus === 1
-															? 'success'
-															: profile.AvailabilityStatus === 2
-																? 'warning'
-																: 'default'
-													}
-													variant="outlined"
-												/>
-											)}
-										</Paper>
-									);
-								})}
-							</div> */}
 							<div className="flex flex-col gap-1 border-t border-x overflow-hidden rounded-lg">
 								{profiles.map((profile) => {
 									const displayName =
@@ -406,7 +293,7 @@ function OnlineProfilesPageView() {
 									return (
 										<Paper
 											key={profile.Puid}
-											className="group flex flex-row items-center gap-4 rounded-none border-b p-4 transition-colors hover:bg-gray-50"
+											className="group flex flex-row items-center gap-4 rounded-none border-b p-4 transition-colors hover:bg-gray-50 cursor-pointer"
 											variant="elevation"
 											elevation={0}
 											onClick={() => {

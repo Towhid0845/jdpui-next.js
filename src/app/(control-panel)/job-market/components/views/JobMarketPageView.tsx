@@ -217,7 +217,7 @@ function JobMarketPageView() {
 	});
 
 	const jobs = useMemo(() => {
-		const result = jobData?.Result || (Array.isArray(jobData) ? (jobData as JobItem[]) : []);
+		const result = jobData?.Jobs || (Array.isArray(jobData) ? (jobData as JobItem[]) : []);
 		return result;
 	}, [jobData]);
 	const totalItems = jobData?.Paging?.TotalItems || 0;
@@ -458,7 +458,25 @@ function JobMarketPageView() {
 										onClick={() => setDetailJob(job)}
 									>
 										<div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-											<div className="flex flex-col gap-1">
+											<div className="flex items-center gap-2">
+												{job.CompanyLogo ? (
+													<img
+														src={job.CompanyLogo}
+														alt={job.CompanyName || 'Company Logo'}
+														className="h-8 w-8 rounded-full object-cover"
+													/>
+												) : (
+													<div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200">
+														<FuseSvgIcon
+															size={16}
+															className="text-gray-500"
+														>
+															lucide:building
+														</FuseSvgIcon>
+													</div>
+												)}
+											</div>
+											<div className="flex flex-col gap-1 mr-auto">
 												<div className="flex items-center gap-2">
 													<Typography className="font-medium">
 														{job.Title || 'Untitled'}

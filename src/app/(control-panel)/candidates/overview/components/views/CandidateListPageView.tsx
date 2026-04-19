@@ -43,6 +43,7 @@ import {
 	createCandidate,
 	inviteCandidateToOpenAccount
 } from '@/api/services/candidates';
+import { getDashboardCandidateChart } from '@/api/services/dashboard';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
 	'& .FusePageSimple-header': {
@@ -55,6 +56,53 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
 		paddingTop: theme.spacing(2)
 	}
 }));
+
+function StatCard({
+	icon,
+	iconBg,
+	iconColor,
+	value,
+	label,
+	percentage
+}: {
+	icon: string;
+	iconBg: string;
+	iconColor: string;
+	value: number;
+	label: string;
+	percentage?: number;
+}) {
+	return (
+		<Paper
+			className="flex items-center gap-3 rounded-lg p-4"
+			variant="outlined"
+		>
+			<div className={`flex h-12 w-12 items-center justify-center rounded-lg ${iconBg}`}>
+				<FuseSvgIcon
+					className={iconColor}
+					size={24}
+				>
+					{icon}
+				</FuseSvgIcon>
+			</div>
+			<div>
+				<Typography
+					className="text-2xl font-semibold"
+					color="text.primary"
+				>
+					{value?.toLocaleString() || 0}
+				</Typography>
+				<Typography
+					variant="caption"
+					color="text.secondary"
+				>
+					{label}
+					{percentage !== undefined && percentage > 0 && ` (${percentage}%)`}
+				</Typography>
+			</div>
+		</Paper>
+	);
+}
 
 const addCandidateSchema = z.object({
 	firstName: z.string().min(1, 'First name is required'),
@@ -305,6 +353,12 @@ function CandidateListPageView() {
 		enabled: isReady
 	});
 
+	const { data: chartData } = useQuery({
+		queryKey: ['candidate-chart'],
+		queryFn: getDashboardCandidateChart,
+		enabled: isReady
+	});
+
 	const candidates = useMemo(() => candidateData?.Result || [], [candidateData]);
 	const totalItems = candidateData?.Paging?.TotalItems || 0;
 	const totalPages = Math.ceil(totalItems / pageSize);
@@ -379,6 +433,43 @@ function CandidateListPageView() {
 							Add Candidate
 						</Button>
 					</div>
+					{/* Stats Cards */}
+					{chartData && (
+						<div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+							<StatCard
+								icon="lucide:user-circle"
+								iconBg="bg-blue-50"
+								iconColor="text-blue-600"
+								value={chartData.TotalCandidates ?? 0}
+								label="Available Profiles"
+								percentage={chartData.OccupiedCount}
+							/>
+							<StatCard
+								icon="lucide:briefcase"
+								iconBg="bg-green-50"
+								iconColor="text-green-600"
+								value={chartData.AvailableCandidates ?? 0}
+								label="Looking for a Job"
+								percentage={chartData.AvailableCandidatesPercentage}
+							/>
+							<StatCard
+								icon="lucide:user-plus"
+								iconBg="bg-amber-50"
+								iconColor="text-amber-600"
+								value={chartData.LookingForCount ?? 0}
+								label="New Profiles"
+								percentage={chartData.LookingForPercentage}
+							/>
+							<StatCard
+								icon="lucide:users"
+								iconBg="bg-indigo-50"
+								iconColor="text-indigo-600"
+								value={chartData.NewCandidates ?? 0}
+								label="Total Profiles"
+								percentage={chartData.NewCandidatesPercentage}
+							/>
+						</div>
+					)}
 					<div className="flex flex-wrap items-center gap-3">
 						<Paper
 							className="flex items-center rounded-full px-3 py-1"

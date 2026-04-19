@@ -147,7 +147,8 @@ function VacancyManagerPageView() {
 			PageSize: pageSize,
 			PageNumber: pageNumber + 1,
 			Filter: selectedFilter === 'all' ? '' : selectedFilter,
-			SearchText: searchText
+			SearchText: searchText,
+			Rid: 50439
 		}),
 		[pageSize, pageNumber, selectedFilter, searchText]
 	);
@@ -168,7 +169,7 @@ function VacancyManagerPageView() {
 		enabled: isReady
 	});
 
-	const vacancies = useMemo(() => vacancyData?.Result || [], [vacancyData]);
+	const vacancies = useMemo(() => vacancyData?.Jobs || [], [vacancyData]);
 	const totalItems = vacancyData?.Paging?.TotalItems || 0;
 	const totalPages = Math.ceil(totalItems / pageSize);
 
@@ -454,12 +455,12 @@ function VacancyManagerPageView() {
 					) : (
 						<>
 							<div className="flex flex-col gap-3">
-								{vacancies.map((vacancy) => {
+								{vacancies.map((vacancy, index	) => {
 									const expired = isExpired(vacancy.DeadLine);
 									const isBusy = actionLoading === vacancy.VacId;
 									return (
 										<Paper
-											key={vacancy.VacId}
+											key={`${vacancy.VacId}-${index}`}
 											className="flex flex-col gap-2 rounded-xl border p-4 md:flex-row md:items-center md:justify-between"
 											variant="outlined"
 										>
