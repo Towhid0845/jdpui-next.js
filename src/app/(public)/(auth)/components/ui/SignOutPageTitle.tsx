@@ -4,8 +4,8 @@ function SignOutPageTitle() {
 	return (
 		<div className="w-full">
 			<img
-				className="mx-auto w-12"
-				src="/assets/images/logo/logo.svg"
+				className="mx-auto w-32"
+				src="/assets/images/logo/jobdesk_logo.svg"
 				alt="logo"
 			/>
 

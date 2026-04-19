@@ -5,8 +5,8 @@ function ResetPasswordPageTitle() {
 	return (
 		<div className="w-full">
 			<img
-				className="w-12"
-				src="/assets/images/logo/logo.svg"
+				className="w-32"
+				src="/assets/images/logo/jobdesk_logo.svg"
 				alt="logo"
 			/>
 

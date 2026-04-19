@@ -10,6 +10,14 @@ import { SystemDataProvider } from '@/contexts/SystemDataContext';
 import generateMetadata from '../utils/generateMetadata';
 import App from './App';
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import '@fontsource/public-sans/400.css';
+import '@fontsource/public-sans/500.css';
+import '@fontsource/public-sans/700.css';
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const metadata = await generateMetadata({
 	title: 'Fuse React - NextJS',

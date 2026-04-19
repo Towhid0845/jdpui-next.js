@@ -13,7 +13,7 @@ const navigationConfig: FuseNavItemType[] = [
 		children: [
 			{
 				id: 'candidate_search',
-				title: 'Online Profiles',
+				title: 'ONLINE PROFILES',
 				translate: 'nav-candidate-search-title',
 				type: 'item',
 				icon: 'lucide:search',
@@ -21,15 +21,15 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'job-market',
-				title: 'Job Market',
-				translate: 'job-market-text',
+				title: 'JOB MARKET',
+				translate: 'job-market-upper',
 				type: 'item',
 				icon: 'lucide:briefcase',
 				url: '/job-market'
 			},
 			{
 				id: 'profile-leads',
-				title: 'Leads',
+				title: 'LEADS',
 				translate: 'profile-leads-upper',
 				type: 'item',
 				icon: 'lucide:target',
@@ -38,7 +38,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'overview',
-				title: 'My Candidates',
+				title: 'MY CANDIDATES',
 				translate: 'nav-candidate-overview-title',
 				type: 'item',
 				icon: 'lucide:users',
@@ -46,7 +46,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'vacancy_manager',
-				title: 'Vacancy Manager',
+				title: 'VACANCY MANAGER',
 				translate: 'vacancy-manager-upper',
 				type: 'item',
 				icon: 'lucide:clipboard-list',
@@ -54,7 +54,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'clients',
-				title: 'Clients & Contacts',
+				title: 'CLIENTS & CONTACTS',
 				translate: 'clients-upper',
 				type: 'item',
 				icon: 'lucide:contact',
@@ -62,7 +62,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'sellers',
-				title: 'Services',
+				title: 'SERVICES',
 				translate: 'services-upper',
 				type: 'item',
 				icon: 'lucide:shop',
@@ -80,7 +80,7 @@ const navigationConfig: FuseNavItemType[] = [
 		children: [
 			{
 				id: 'my_profiles',
-				title: 'My Profiles',
+				title: 'MY PROFILES',
 				translate: 'my-profiles-title',
 				type: 'item',
 				icon: 'lucide:user',
@@ -88,7 +88,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'my_proposal',
-				title: 'My Proposals',
+				title: 'MY PROPOSALS',
 				translate: 'my-proposal-title',
 				type: 'item',
 				icon: 'lucide:inbox',
@@ -96,7 +96,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'online_vacancy',
-				title: 'Live Jobs',
+				title: 'LIVE JOBS',
 				translate: 'live-jobs-upper',
 				type: 'item',
 				icon: 'lucide:radio',
@@ -104,13 +104,13 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'candidate_office',
-				title: 'My Office',
+				title: 'MY OFFICE',
 				type: 'collapsable',
 				icon: 'lucide:building',
 				children: [
 					{
 						id: 'client_attendance',
-						title: 'Attendance',
+						title: 'ATTENDANCE',
 						translate: 'nav-employee-attendance',
 						type: 'item',
 						icon: 'lucide:calendar-check',
@@ -118,7 +118,7 @@ const navigationConfig: FuseNavItemType[] = [
 					},
 					{
 						id: 'notice_board_client',
-						title: 'Notice Board',
+						title: 'NOTICE BOARD',
 						translate: 'nav-employee-notice',
 						type: 'item',
 						icon: 'lucide:clipboard',
@@ -128,7 +128,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'seller_services',
-				title: 'My Services',
+				title: 'MY SERVICES',
 				translate: 'seller-services-title',
 				type: 'item',
 				icon: 'lucide:briefcase-business',
@@ -136,7 +136,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'seller_orders',
-				title: 'My Orders',
+				title: 'MY ORDERS',
 				translate: 'seller-orders-title',
 				type: 'item',
 				icon: 'lucide:shopping-bag',
@@ -144,7 +144,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'seller_notifications',
-				title: 'Notifications',
+				title: 'NOTIFICATIONS',
 				translate: 'seller-notifications-title',
 				type: 'item',
 				icon: 'lucide:bell',
@@ -152,7 +152,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'todo',
-				title: 'Todo',
+				title: 'TODO',
 				translate: 'todo-upper',
 				type: 'item',
 				icon: 'lucide:check-square',
@@ -160,7 +160,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'calendar',
-				title: 'Calendar',
+				title: 'CALENDAR',
 				translate: 'calendar-upper',
 				type: 'item',
 				icon: 'lucide:calendar',
@@ -177,7 +177,7 @@ const navigationConfig: FuseNavItemType[] = [
 		children: [
 			{
 				id: 'client_proposals',
-				title: 'Recruiter Proposals',
+				title: 'RECRUITER PROPOSALS',
 				translate: 'applicant-proposal-title',
 				type: 'item',
 				icon: 'lucide:folder-kanban',
@@ -185,7 +185,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'dashboard',
-				title: 'Dashboard',
+				title: 'DASHBOARD',
 				translate: 'dashboard-upper',
 				type: 'item',
 				icon: 'lucide:gauge',
@@ -193,7 +193,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'client_candidates',
-				title: 'My Candidates',
+				title: 'MY CANDIDATES',
 				translate: 'nav-candidate-overview-title',
 				type: 'item',
 				icon: 'lucide:users',
@@ -201,7 +201,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'vacancy_manager_client',
-				title: 'Vacancy Manager',
+				title: 'VACANCY MANAGER',
 				translate: 'vacancy-manager-upper',
 				type: 'item',
 				icon: 'lucide:clipboard-list',
@@ -209,7 +209,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'clients_client',
-				title: 'Clients & Contacts',
+				title: 'CLIENTS & CONTACTS',
 				translate: 'clients-upper',
 				type: 'item',
 				icon: 'lucide:contact',
@@ -226,7 +226,7 @@ const navigationConfig: FuseNavItemType[] = [
 		children: [
 			{
 				id: 'seller_services_only',
-				title: 'My Services',
+				title: 'MY SERVICES',
 				translate: 'seller-services-title',
 				type: 'item',
 				icon: 'lucide:briefcase-business',
@@ -234,7 +234,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'seller_orders_only',
-				title: 'My Orders',
+				title: 'MY ORDERS',
 				translate: 'seller-orders-title',
 				type: 'item',
 				icon: 'lucide:shopping-bag',
@@ -242,7 +242,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'seller_notifications_only',
-				title: 'Notifications',
+				title: 'NOTIFICATIONS',
 				translate: 'seller-notifications-title',
 				type: 'item',
 				icon: 'lucide:bell',
@@ -259,7 +259,7 @@ const navigationConfig: FuseNavItemType[] = [
 		children: [
 			{
 				id: 'candidate_search_world',
-				title: 'Online Profiles',
+				title: 'ONLINE PROFILES',
 				translate: 'nav-candidate-search-title',
 				type: 'item',
 				icon: 'lucide:search',
@@ -267,7 +267,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'online_vacancy_world',
-				title: 'Live Jobs',
+				title: 'LIVE JOBS',
 				translate: 'live-jobs-upper',
 				type: 'item',
 				icon: 'lucide:radio',
@@ -275,7 +275,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'sellers_world',
-				title: 'Services',
+				title: 'SERVICES',
 				translate: 'services-upper',
 				type: 'item',
 				icon: 'lucide:shop',
@@ -283,7 +283,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'profile_purchases',
-				title: 'Purchases',
+				title: 'PURCHASES',
 				translate: 'purchases-upper',
 				type: 'item',
 				icon: 'lucide:wallet',
@@ -291,7 +291,7 @@ const navigationConfig: FuseNavItemType[] = [
 			},
 			{
 				id: 'transaction_history',
-				title: 'Transaction History',
+				title: 'TRANSACTION HISTORY',
 				translate: 'transaction-history-upper',
 				type: 'item',
 				icon: 'lucide:receipt',
@@ -308,7 +308,7 @@ const navigationConfig: FuseNavItemType[] = [
 		children: [
 			{
 				id: 'learning_resources',
-				title: 'Resources',
+				title: 'RESOURCES',
 				translate: 'nav-learning-resources-title',
 				type: 'item',
 				icon: 'lucide:library',

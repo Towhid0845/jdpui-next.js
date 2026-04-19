@@ -29,6 +29,15 @@ function NavigationShortcuts(props: NavigationShortcutsProps) {
 		/* if (!isGuest && prevUserShortcuts && !_.isEqual(userShortcuts, prevUserShortcuts)) {
 			updateUser(setIn(user, 'shortcuts', userShortcuts) as User);
 		}*/
+		const shortcutsChanged = JSON.stringify(userShortcuts) !== JSON.stringify(prevUserShortcuts);
+
+		if (!isGuest && prevUserShortcuts && shortcutsChanged) {
+			// This updates the user context/database
+			updateUser({
+				...user,
+				shortcuts: userShortcuts
+			});
+		}
 	}, [isGuest, prevUserShortcuts, updateUser, user, userShortcuts]);
 
 	function handleShortcutsChange(newShortcuts: string[]) {

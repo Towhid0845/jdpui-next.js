@@ -20,7 +20,10 @@ import {
 	TextField,
 	ToggleButton,
 	ToggleButtonGroup,
-	Typography
+	Typography,
+	Avatar, 
+	Divider, 
+	IconButton 
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { formatDistanceToNow } from 'date-fns';
@@ -84,84 +87,217 @@ function formatDate(value?: string) {
 	}
 }
 
-function JobDetailDialog({ job, open, onClose }: { job: JobItem | null; open: boolean; onClose: () => void }) {
-	if (!job) return null;
+// function JobDetailDialog({ job, open, onClose }: { job: JobItem | null; open: boolean; onClose: () => void }) {
+// 	if (!job) return null;
 
-	return (
-		<Dialog
-			open={open}
-			onClose={onClose}
-			maxWidth="sm"
-			fullWidth
-		>
-			<DialogTitle>{job.Title}</DialogTitle>
-			<DialogContent dividers>
-				<div className="flex flex-col gap-3">
-					{job.CompanyName && (
-						<Typography
-							variant="body2"
-							color="text.secondary"
-						>
-							{job.CompanyName}
-						</Typography>
-					)}
-					<div className="flex flex-wrap gap-2">
-						{job.JobLocation && (
-							<Chip
-								label={job.JobLocation}
-								size="small"
-								icon={<FuseSvgIcon size={14}>lucide:map-pin</FuseSvgIcon>}
-							/>
-						)}
-						{job.JobTypeText && (
-							<Chip
-								label={job.JobTypeText}
-								size="small"
-							/>
-						)}
-						{job.Sector && (
-							<Chip
-								label={job.Sector}
-								size="small"
-							/>
-						)}
-					</div>
-					{(job.MinSalary || job.MaxSalary) && (
-						<Typography variant="body2">
-							Salary: {job.SalaryCurrency || ''} {job.MinSalary?.toLocaleString() || '0'} –{' '}
-							{job.MaxSalary?.toLocaleString() || '0'}
-						</Typography>
-					)}
-					{job.DeadLine && (
-						<Typography
-							variant="body2"
-							color="text.secondary"
-						>
-							Deadline: {new Date(job.DeadLine).toLocaleDateString('en-GB')}
-						</Typography>
-					)}
-					{job.Description && (
-						<div
-							className="prose prose-sm max-w-none"
-							dangerouslySetInnerHTML={{ __html: job.Description }}
-						/>
-					)}
-				</div>
-			</DialogContent>
-			<DialogActions>
-				<Button onClick={onClose}>Close</Button>
-				{job.ApplyLink && (
-					<Button
-						variant="contained"
-						href={job.ApplyLink}
-						target="_blank"
-					>
-						Apply
-					</Button>
-				)}
-			</DialogActions>
-		</Dialog>
-	);
+// 	return (
+// 		<Dialog
+// 			open={open}
+// 			onClose={onClose}
+// 			maxWidth="sm"
+// 			fullWidth
+// 		>
+// 			<DialogTitle>{job.Title}</DialogTitle>
+// 			<DialogContent dividers>
+// 				<div className="flex flex-col gap-3">
+// 					{job.CompanyName && (
+// 						<Typography
+// 							variant="body2"
+// 							color="text.secondary"
+// 						>
+// 							{job.CompanyName}
+// 						</Typography>
+// 					)}
+// 					<div className="flex flex-wrap gap-2">
+// 						{job.JobLocation && (
+// 							<Chip
+// 								label={job.JobLocation}
+// 								size="small"
+// 								icon={<FuseSvgIcon size={14}>lucide:map-pin</FuseSvgIcon>}
+// 							/>
+// 						)}
+// 						{job.JobTypeText && (
+// 							<Chip
+// 								label={job.JobTypeText}
+// 								size="small"
+// 							/>
+// 						)}
+// 						{job.Sector && (
+// 							<Chip
+// 								label={job.Sector}
+// 								size="small"
+// 							/>
+// 						)}
+// 					</div>
+// 					{(job.MinSalary || job.MaxSalary) && (
+// 						<Typography variant="body2">
+// 							Salary: {job.SalaryCurrency || ''} {job.MinSalary?.toLocaleString() || '0'} –{' '}
+// 							{job.MaxSalary?.toLocaleString() || '0'}
+// 						</Typography>
+// 					)}
+// 					{job.DeadLine && (
+// 						<Typography
+// 							variant="body2"
+// 							color="text.secondary"
+// 						>
+// 							Deadline: {new Date(job.DeadLine).toLocaleDateString('en-GB')}
+// 						</Typography>
+// 					)}
+// 					{job.Description && (
+// 						<div
+// 							className="prose prose-sm max-w-none"
+// 							dangerouslySetInnerHTML={{ __html: job.Description }}
+// 						/>
+// 					)}
+// 				</div>
+// 			</DialogContent>
+// 			<DialogActions>
+// 				<Button onClick={onClose}>Close</Button>
+// 				{job.ApplyLink && (
+// 					<Button
+// 						variant="contained"
+// 						href={job.ApplyLink}
+// 						target="_blank"
+// 					>
+// 						Apply
+// 					</Button>
+// 				)}
+// 			</DialogActions>
+// 		</Dialog>
+// 	);
+// }
+
+
+
+function JobDetailDialog({ job, open, onClose }: { job: any | null; open: boolean; onClose: () => void }) {
+    if (!job) return null;
+
+    // Handle the placeholder infinite deadline from the API
+    const isInfiniteDeadline = job.DeadLine?.startsWith('9999');
+    const displayDeadline = isInfiniteDeadline 
+        ? 'Open until filled' 
+        : new Date(job.DeadLine).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    return (
+        <Dialog
+            open={open}
+            onClose={onClose}
+            maxWidth="sm"
+            fullWidth
+            scroll="paper"
+            PaperProps={{ className: "rounded-xl font-public-sans" }}
+        >
+            <DialogTitle className="flex items-start justify-between p-6 pb-4">
+                <div className="flex gap-4 ">
+                    <Avatar
+                        src={job.CompanyLogo}
+                        variant="rounded"
+                        className="w-[110px] h-auto [&_img]:object-contain border bg-gray-50 shadow-sm px-3"
+                    >
+                        {job.CompanyName?.[0]}
+                    </Avatar>
+                    <div className="flex flex-col">
+                        <Typography variant="h6" className="font-bold leading-tight text-blue-900">
+                            {job.Title}
+                        </Typography>
+                        <Typography variant="subtitle2" color="primary" className="font-medium">
+                            {job.CompanyName}
+                        </Typography>
+                    </div>
+                </div>
+                <IconButton onClick={onClose} size="small" className="-mt-2 -mr-2">
+                    <FuseSvgIcon size={20}>lucide:x</FuseSvgIcon>
+                </IconButton>
+            </DialogTitle>
+
+            <DialogContent className="px-6 py-4">
+                {/* Quick Info Grid */}
+                <div className="grid grid-cols-2 gap-4 rounded-lg bg-gray-50 p-4 mb-6">
+                    <div className="flex items-center gap-2">
+                        <FuseSvgIcon size={18} className="text-gray-400">lucide:map-pin</FuseSvgIcon>
+                        <div>
+                            <Typography variant="caption" className="block text-gray-400 uppercase font-bold">Location</Typography>
+                            <Typography variant="body2">{job.JobLocation || 'Not Specified'}</Typography>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <FuseSvgIcon size={18} className="text-gray-400">lucide:calendar</FuseSvgIcon>
+                        <div>
+                            <Typography variant="caption" className="block text-gray-400 uppercase font-bold">Deadline</Typography>
+                            <Typography variant="body2">{displayDeadline}</Typography>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <FuseSvgIcon size={18} className="text-gray-400">lucide:banknote</FuseSvgIcon>
+                        <div>
+                            <Typography variant="caption" className="block text-gray-400 uppercase font-bold">Salary</Typography>
+                            <Typography variant="body2">
+                                {job.MaxSalary > 0 
+                                    ? `${job.SalaryCurrency || 'BDT'} ${job.MinSalary || 0} - ${job.MaxSalary}`
+                                    : 'Negotiable'}
+                            </Typography>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <FuseSvgIcon size={18} className="text-gray-400">lucide:briefcase</FuseSvgIcon>
+                        <div>
+                            <Typography variant="caption" className="block text-gray-400 uppercase font-bold">Source</Typography>
+                            <Typography variant="body2" className="capitalize">{job.Source || 'Direct'}</Typography>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Tags/Categories */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                    {job.IsUrgent && (
+                        <Chip label="Urgent" size="small" color="error" variant="filled" className="font-bold" />
+                    )}
+                    {job.JobTypeText && <Chip label={job.JobTypeText} size="small" variant="outlined" />}
+                    {job.IsVerifiedCompany && (
+                        <Chip 
+                            label="Verified Company" 
+                            size="small" 
+                            color="success" 
+                            variant="outlined" 
+                            icon={<FuseSvgIcon size={14}>lucide:check-circle</FuseSvgIcon>}
+                        />
+                    )}
+                </div>
+
+                <Divider className="mb-4" />
+
+                {/* Job Description */}
+                <Typography variant="subtitle1" className="font-bold mb-2">Job Description</Typography>
+                {job.Description ? (
+                    <div
+                        className="prose prose-sm max-w-none text-gray-700 leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: job.Description }}
+                    />
+                ) : (
+                    <Typography variant="body2" color="text.secondary" className="italic">
+                        No detailed description provided. Please visit the apply link for more details.
+                    </Typography>
+                )}
+            </DialogContent>
+
+            <DialogActions className="p-6 pt-2">
+                <Button onClick={onClose} className="font-bold text-gray-500">
+                    Maybe Later
+                </Button>
+                {job.ApplyLink && (
+                    <Button
+                        variant="contained"
+                        href={job.ApplyLink}
+                        target="_blank"
+                        className="bg-[#1e4e79] hover:bg-[#163a5a] px-8 py-2 rounded-md font-bold capitalize shadow-none"
+                        startIcon={<FuseSvgIcon size={18}>lucide:external-link</FuseSvgIcon>}
+                    >
+                        Apply on {job.Source || 'Site'}
+                    </Button>
+                )}
+            </DialogActions>
+        </Dialog>
+    );
 }
 
 function JobMarketPageView() {
@@ -244,7 +380,7 @@ function JobMarketPageView() {
 					{chartData && (
 						<div className="grid grid-cols-2 gap-4 md:grid-cols-4">
 							<Paper
-								className="flex items-center gap-3 rounded-lg p-4"
+								className="flex items-center gap-3 rounded-lg p-4 border-b-2 border-b-blue-600"
 								variant="outlined"
 							>
 								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50">
@@ -271,7 +407,7 @@ function JobMarketPageView() {
 								</div>
 							</Paper>
 							<Paper
-								className="flex items-center gap-3 rounded-lg p-4"
+								className="flex items-center gap-3 rounded-lg p-4 border-b-2 border-b-green-600"
 								variant="outlined"
 							>
 								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-50">
@@ -298,7 +434,7 @@ function JobMarketPageView() {
 								</div>
 							</Paper>
 							<Paper
-								className="flex items-center gap-3 rounded-lg p-4"
+								className="flex items-center gap-3 rounded-lg p-4 border-b-2 border-b-red-600"
 								variant="outlined"
 							>
 								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-red-50">
@@ -325,7 +461,7 @@ function JobMarketPageView() {
 								</div>
 							</Paper>
 							<Paper
-								className="flex items-center gap-3 rounded-lg p-4"
+								className="flex items-center gap-3 rounded-lg p-4 border-b-2 border-b-amber-600"
 								variant="outlined"
 							>
 								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-50">
@@ -453,7 +589,7 @@ function JobMarketPageView() {
 								{jobs.map((job, idx) => (
 									<Paper
 										key={job.VacId || idx}
-										className="cursor-pointer rounded-xl border p-4 transition-shadow hover:shadow-md"
+										className="cursor-pointer rounded-xl border p-4 transition-shadow hover:bg-sky-100 hover:shadow-md"
 										variant="outlined"
 										onClick={() => setDetailJob(job)}
 									>

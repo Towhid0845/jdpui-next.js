@@ -84,3 +84,83 @@ export async function removeCandidateTag(cid: number, tag: string): Promise<unkn
 export async function getCandidateLog(cid: number): Promise<unknown> {
 	return apiClient.get(`api/Candidates/GetCandidateLog/${cid}`).json<unknown>();
 }
+
+
+export async function getCandidateProfExpById(pager: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/ProfExperiences/List', { json: pager }).json<unknown>();
+}
+
+export async function addProfileExp(profExperiences: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/ProfExperiences', { json: profExperiences }).json<unknown>();
+}
+
+export async function updateProfileExp(profExp: Record<string, unknown>): Promise<unknown> {
+	const id = profExp.ID;
+	return apiClient.put(`api/ProfExperiences/${id}`, { json: profExp }).json<unknown>();
+}
+
+
+export async function getCandidateEducationsById(pager: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/CandidateEducations/List', { json: pager }).json<unknown>();
+}
+
+export async function addEducation(addEducationPlayload: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/CandidateEducations', { json: addEducationPlayload }).json<unknown>();
+}
+
+export async function updateEducation(education: Record<string, unknown>): Promise<unknown> {
+	const id = education.ID;
+	return apiClient.put(`api/CandidateEducations/${id}`, { json: education }).json<unknown>();
+}
+
+
+
+
+export async function addProfileCertificate(payload: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/ProfileCertificates/AddNew', { json: payload }).json<unknown>();
+}
+
+export async function getProfileCertificates(pid: number): Promise<unknown> {
+	return apiClient.get(`api/ProfileCertificates/GetCertificates/${pid}`).json<unknown>();
+}
+
+export async function updateProfileCertificate(payload: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/ProfileCertificates/Edit', { json: payload }).json<unknown>();
+}
+
+export async function deleteProfileCertificates(pid: number, id: number): Promise<unknown> {
+	return apiClient.delete(`api/ProfileCertificates/DeleteCertificates/${pid}/${id}`).json<unknown>();
+}
+
+
+export async function getCandidateSkillsById(pager: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/CandidateSkills/List', { json: pager }).json<unknown>();
+}
+
+export async function addSkill(addSkillsPlayload: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/CandidateSkills', { json: addSkillsPlayload }).json<unknown>();
+}
+
+export async function updateSkill(skill: Record<string, unknown>): Promise<unknown> {
+	const id = skill.ID;
+	return apiClient.put(`api/CandidateSkills/${id}`, { json: skill }).json<unknown>();
+}
+
+
+
+export async function getCandidateLanguagesById(pager: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/CandidateLanguage/List', { json: pager }).json<unknown>();
+}
+
+export async function addLanguage(addLanguagePlayload: Record<string, unknown>): Promise<unknown> {
+	return apiClient.post('api/CandidateLanguage', { json: addLanguagePlayload }).json<unknown>();
+}
+
+export async function updateLanguage(language: Record<string, unknown>): Promise<unknown> {
+	const id = language.ID;
+	return apiClient.put(`api/CandidateLanguage/${id}`, { json: language }).json<unknown>();
+}
+
+export async function deleteLanguageById(id: number): Promise<unknown> {
+	return apiClient.delete(`api/CandidateLanguage/${id}`).json<unknown>();
+}

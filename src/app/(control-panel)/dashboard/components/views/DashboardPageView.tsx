@@ -155,10 +155,10 @@ function CardHeader({ title, subtitle }: CardHeaderProps) {
 	return (
 		<div className="flex items-start justify-between">
 			<div>
-				<Typography className="text-lg font-semibold">{title}</Typography>
+				<Typography className="font-semibold">{title}</Typography>
 				{subtitle ? (
 					<Typography
-						className="text-sm"
+						className=""
 						color="text.secondary"
 					>
 						{subtitle}
@@ -259,8 +259,8 @@ function MiniStatCard({ title, subtitle, value, growth, series, color }: MiniSta
 	return (
 		<Paper className="rounded-xl p-4 shadow-sm">
 			<div className="flex flex-col gap-2">
-				<Typography className="text-sm font-semibold">{title}</Typography>
-				<Typography className="text-xs" color="text.secondary">
+				<Typography className=" font-semibold">{title}</Typography>
+				<Typography className="text-sm" color="text.secondary">
 					{subtitle}
 				</Typography>
 			</div>
@@ -273,7 +273,7 @@ function MiniStatCard({ title, subtitle, value, growth, series, color }: MiniSta
 			<div className="mt-2 flex items-center justify-between">
 				<Typography className="text-xl font-semibold">{value}</Typography>
 				<Typography
-					className="text-xs font-semibold"
+					className="text-sm font-semibold"
 					sx={{ color: growthColor }}
 				>
 					{Number.isFinite(growthValue) ? `${growthValue}%` : '--'}
@@ -297,7 +297,7 @@ function StatusBadge({ label, variant }: StatusBadgeProps) {
 
 	return (
 		<Box
-			className="rounded-full px-3 py-1 text-xs font-semibold"
+			className="rounded-full px-3 py-1 text-sm font-semibold"
 			sx={{ color: paletteMap[variant].color, backgroundColor: paletteMap[variant].background }}
 		>
 			{label}
@@ -664,11 +664,11 @@ function DashboardPageView() {
 						<div className="flex flex-col gap-4">
 							<div className="flex flex-wrap items-start justify-between gap-4">
 								<div>
-									<Typography className="text-lg font-semibold">
+									<Typography className="font-semibold">
 										{t('analytics-reports', 'Analytics Reports')}
 									</Typography>
 									<Typography
-										className="text-sm"
+										className=""
 										color="text.secondary"
 									>
 										{t('yearly-overview', 'Yearly Overview')}
@@ -723,13 +723,13 @@ function DashboardPageView() {
 										<Typography className="text-base font-semibold">
 											{t('home-price-storage-ttl', 'Storage')}
 										</Typography>
-										<Typography className="mt-3 text-sm font-semibold text-blue-600">
+										<Typography className="mt-3  font-semibold text-blue-600">
 											{formatBytes(storageUsed * 1048576)} /{' '}
 											{storageUnlimited
 												? t('unli-sm', 'Unlimited')
 												: formatBytes(storageTotal * 1048576)}
 										</Typography>
-										<Typography className="text-xs" color="text.secondary">
+										<Typography className="text-sm" color="text.secondary">
 											{formatBytes(storageAvailable * 1048576)} {t('avl-storage', 'Free Storage')}
 										</Typography>
 									</div>
@@ -747,15 +747,15 @@ function DashboardPageView() {
 								</div>
 							</div>
 							<div className="rounded-xl border border-transparent bg-white p-4 shadow-sm">
-								<Typography className="text-sm font-semibold">
+								<Typography className=" font-semibold">
 									{t('cv-parsing', 'CV Parsing')}
 								</Typography>
 								<div className="mt-4">
-									<Typography className="text-sm">
+									<Typography className="">
 										{t('basic-parsing-imit', 'Free Basic Parsing Limit')}{' '}
 										<span className="font-semibold text-blue-600">{t('unli-sm', 'Unlimited')}</span>
 									</Typography>
-									<Typography className="text-xs" color="text.secondary">
+									<Typography className="text-sm" color="text.secondary">
 										{t('dash-cal-month', 'Calculated monthly')}
 									</Typography>
 								</div>
@@ -768,11 +768,11 @@ function DashboardPageView() {
 											alt="wave"
 											className="h-6 w-6"
 										/>
-										<Typography className="text-sm">
+										<Typography className="">
 											{t('free-full-parse-limit', 'Free Full Parsing Limit')}
 										</Typography>
 									</div>
-									<Typography className="text-sm font-semibold">
+									<Typography className=" font-semibold">
 										{userConsumption?.FullLimit === -1
 											? t('unli-sm', 'Unlimited')
 											: userConsumption?.FullLimit ?? 0}
@@ -785,11 +785,11 @@ function DashboardPageView() {
 											alt="wave"
 											className="h-6 w-6"
 										/>
-										<Typography className="text-sm">
+										<Typography className="">
 											{t('used-basic-parsing', 'Used Basic Parsing')}
 										</Typography>
 									</div>
-									<Typography className="text-sm font-semibold">{userConsumption?.UsedBasic ?? 0}</Typography>
+									<Typography className=" font-semibold">{userConsumption?.UsedBasic ?? 0}</Typography>
 								</div>
 								<div className="flex items-center justify-between">
 									<div className="flex items-center gap-2">
@@ -798,11 +798,11 @@ function DashboardPageView() {
 											alt="wave"
 											className="h-6 w-6"
 										/>
-										<Typography className="text-sm">
+										<Typography className="">
 											{t('used-full-parsing', 'Used Full Parsing')}
 										</Typography>
 									</div>
-									<Typography className="text-sm font-semibold">{userConsumption?.UsedFull ?? 0}</Typography>
+									<Typography className=" font-semibold">{userConsumption?.UsedFull ?? 0}</Typography>
 								</div>
 							</div>
 						</div>
@@ -860,7 +860,7 @@ function DashboardPageView() {
 							/>
 							<div className="mt-6 flex flex-col gap-4">
 								<div className="flex items-center justify-between gap-4">
-									<Typography className="text-sm">{t('open-vacancies', 'Open Vacancies')}</Typography>
+									<Typography className="">{t('open-vacancies', 'Open Vacancies')}</Typography>
 									<div className="flex w-2/3 items-center gap-3">
 										<LinearProgress
 											variant="determinate"
@@ -872,13 +872,13 @@ function DashboardPageView() {
 												'& .MuiLinearProgress-bar': { backgroundColor: '#EA5455' }
 											}}
 										/>
-										<Typography className="text-sm font-semibold">
+										<Typography className=" font-semibold">
 											{clampPercent(vacancyInfo?.OpenVacPercent).toFixed(1)}%
 										</Typography>
 									</div>
 								</div>
 								<div className="flex items-center justify-between gap-4">
-									<Typography className="text-sm">{t('short-listed', 'Shortlisted')}</Typography>
+									<Typography className="">{t('short-listed', 'Shortlisted')}</Typography>
 									<div className="flex w-2/3 items-center gap-3">
 										<LinearProgress
 											variant="determinate"
@@ -890,14 +890,14 @@ function DashboardPageView() {
 												'& .MuiLinearProgress-bar': { backgroundColor: '#7367F0' }
 											}}
 										/>
-										<Typography className="text-sm font-semibold">
+										<Typography className=" font-semibold">
 											{clampPercent(vacancyInfo?.ShortListPercent).toFixed(1)}%
 										</Typography>
 									</div>
 								</div>
 								<div className="flex items-center justify-between">
-									<Typography className="text-sm">{t('total-applicants', 'Total Applicants')}</Typography>
-									<Typography className="text-sm font-semibold">{vacancyInfo?.TotalApplicants ?? 0}</Typography>
+									<Typography className="">{t('total-applicants', 'Total Applicants')}</Typography>
+									<Typography className=" font-semibold">{vacancyInfo?.TotalApplicants ?? 0}</Typography>
 								</div>
 							</div>
 						</Paper>
@@ -955,15 +955,15 @@ function DashboardPageView() {
 										</div>
 										<div className="flex flex-1 items-start justify-between gap-4">
 											<div>
-												<Typography className="text-sm font-semibold">
+												<Typography className=" font-semibold">
 													{item?.Title || t('notifications', 'Notifications')}
 												</Typography>
-												<Typography className="text-sm" color="text.secondary">
+												<Typography className="" color="text.secondary">
 													{item?.Body || item?.Message || ''}
 												</Typography>
 											</div>
 											<div className="flex flex-col items-end gap-2">
-												<Typography className="text-xs" color="text.secondary">
+												<Typography className="text-sm" color="text.secondary">
 													{formatRelativeDate(item?.Sent || item?.Created)}
 												</Typography>
 											</div>
@@ -978,7 +978,7 @@ function DashboardPageView() {
 							</div>
 						) : (
 							<div className="flex flex-col items-center justify-center gap-3 py-12">
-								<Typography className="text-sm font-semibold" color="primary">
+								<Typography className=" font-semibold" color="primary">
 									{t('no-notifications', 'No Notifications found')}
 								</Typography>
 								<img
@@ -999,8 +999,8 @@ function DashboardPageView() {
 							<div className="mt-6 flex flex-col gap-4">
 								<div className="flex items-center justify-between gap-4">
 									<div>
-										<Typography className="text-sm">{t('total-avail-candi', 'Total Available Candidates')}</Typography>
-										<div className="flex items-center gap-1 text-xs text-slate-500">
+										<Typography className="">{t('total-avail-candi', 'Total Available Candidates')}</Typography>
+										<div className="flex items-center gap-1 text-sm text-slate-500">
 											{candidateInfo?.AvailableCandidatesPercentage >= 50 ? (
 												<TrendingUpIcon fontSize="small" color="success" />
 											) : (
@@ -1010,7 +1010,7 @@ function DashboardPageView() {
 										</div>
 									</div>
 									<div className="flex items-center gap-3">
-										<Typography className="text-sm font-semibold">
+										<Typography className=" font-semibold">
 											{candidateInfo?.AvailableCandidates ?? 0}
 										</Typography>
 										<ProgressRing value={clampPercent(candidateInfo?.AvailableCandidatesPercentage)} color="#4d5bf9" />
@@ -1018,8 +1018,8 @@ function DashboardPageView() {
 								</div>
 								<div className="flex items-center justify-between gap-4">
 									<div>
-										<Typography className="text-sm">{t('new-candidates', 'New Candidates')}</Typography>
-										<div className="flex items-center gap-1 text-xs text-slate-500">
+										<Typography className="">{t('new-candidates', 'New Candidates')}</Typography>
+										<div className="flex items-center gap-1 text-sm text-slate-500">
 											{candidateInfo?.NewCandidatesPercentage >= 50 ? (
 												<TrendingUpIcon fontSize="small" color="success" />
 											) : (
@@ -1029,14 +1029,14 @@ function DashboardPageView() {
 										</div>
 									</div>
 									<div className="flex items-center gap-3">
-										<Typography className="text-sm font-semibold">{candidateInfo?.NewCandidates ?? 0}</Typography>
+										<Typography className=" font-semibold">{candidateInfo?.NewCandidates ?? 0}</Typography>
 										<ProgressRing value={clampPercent(candidateInfo?.NewCandidatesPercentage)} color="#28C76F" />
 									</div>
 								</div>
 								<div className="flex items-center justify-between gap-4">
 									<div>
-										<Typography className="text-sm">{t('looking-for', 'Looking For')}</Typography>
-										<div className="flex items-center gap-1 text-xs text-slate-500">
+										<Typography className="">{t('looking-for', 'Looking For')}</Typography>
+										<div className="flex items-center gap-1 text-sm text-slate-500">
 											{candidateInfo?.LookingForPercentage >= 50 ? (
 												<TrendingUpIcon fontSize="small" color="success" />
 											) : (
@@ -1046,17 +1046,17 @@ function DashboardPageView() {
 										</div>
 									</div>
 									<div className="flex items-center gap-3">
-										<Typography className="text-sm font-semibold">{candidateInfo?.LookingForCount ?? 0}</Typography>
+										<Typography className=" font-semibold">{candidateInfo?.LookingForCount ?? 0}</Typography>
 										<ProgressRing value={clampPercent(candidateInfo?.LookingForPercentage)} color="#0D99FF" />
 									</div>
 								</div>
 								<div className="flex items-center justify-between">
-									<Typography className="text-sm">{t('occupied', 'Not available')}</Typography>
-									<Typography className="text-sm font-semibold">{candidateInfo?.OccupiedCount ?? 0}</Typography>
+									<Typography className="">{t('occupied', 'Not available')}</Typography>
+									<Typography className=" font-semibold">{candidateInfo?.OccupiedCount ?? 0}</Typography>
 								</div>
 								<div className="flex items-center justify-between">
-									<Typography className="text-sm">{t('open-to-request', 'Open To Request')}</Typography>
-									<Typography className="text-sm font-semibold">{candidateInfo?.OpenToRequestCount ?? 0}</Typography>
+									<Typography className="">{t('open-to-request', 'Open To Request')}</Typography>
+									<Typography className=" font-semibold">{candidateInfo?.OpenToRequestCount ?? 0}</Typography>
 								</div>
 							</div>
 						</Paper>
@@ -1070,7 +1070,7 @@ function DashboardPageView() {
 							/>
 							<div className="mt-6 flex flex-col gap-4">
 								<div className="flex items-center justify-between gap-4">
-									<Typography className="text-sm">{t('open-vacancies', 'Open Vacancies')}</Typography>
+									<Typography className="">{t('open-vacancies', 'Open Vacancies')}</Typography>
 									<div className="flex w-2/3 items-center gap-3">
 										<LinearProgress
 											variant="determinate"
@@ -1082,13 +1082,13 @@ function DashboardPageView() {
 												'& .MuiLinearProgress-bar': { backgroundColor: '#EA5455' }
 											}}
 										/>
-										<Typography className="text-sm font-semibold">
+										<Typography className=" font-semibold">
 											{clampPercent(vacancyInfo?.OpenVacPercent).toFixed(1)}%
 										</Typography>
 									</div>
 								</div>
 								<div className="flex items-center justify-between gap-4">
-									<Typography className="text-sm">{t('short-listed', 'Shortlisted')}</Typography>
+									<Typography className="">{t('short-listed', 'Shortlisted')}</Typography>
 									<div className="flex w-2/3 items-center gap-3">
 										<LinearProgress
 											variant="determinate"
@@ -1100,14 +1100,14 @@ function DashboardPageView() {
 												'& .MuiLinearProgress-bar': { backgroundColor: '#7367F0' }
 											}}
 										/>
-										<Typography className="text-sm font-semibold">
+										<Typography className=" font-semibold">
 											{clampPercent(vacancyInfo?.ShortListPercent).toFixed(1)}%
 										</Typography>
 									</div>
 								</div>
 								<div className="flex items-center justify-between">
-									<Typography className="text-sm">{t('total-applicants', 'Total Applicants')}</Typography>
-									<Typography className="text-sm font-semibold">{vacancyInfo?.TotalApplicants ?? 0}</Typography>
+									<Typography className="">{t('total-applicants', 'Total Applicants')}</Typography>
+									<Typography className=" font-semibold">{vacancyInfo?.TotalApplicants ?? 0}</Typography>
 								</div>
 							</div>
 						</Paper>
@@ -1120,12 +1120,12 @@ function DashboardPageView() {
 								{topVacancies.map((vacancy: any, index: number) => (
 									<div key={`${vacancy?.Id || index}`} className="flex items-center justify-between gap-4 pb-4">
 										<div>
-											<Typography className="text-sm font-semibold">{vacancy?.Title}</Typography>
-											<Typography className="text-xs" color="text.secondary">
+											<Typography className=" font-semibold">{vacancy?.Title}</Typography>
+											<Typography className="text-sm" color="text.secondary">
 												{vacancy?.TotalApplicants ?? 0} {t('applicants', 'Applicants')}
 											</Typography>
 										</div>
-										<Typography className="text-xs" color="text.secondary">
+										<Typography className="text-sm" color="text.secondary">
 											{vacancy?.Views ?? 0} {t('views', 'View')}
 										</Typography>
 									</div>
@@ -1133,7 +1133,7 @@ function DashboardPageView() {
 							</div>
 						) : (
 							<div className="flex flex-col items-center justify-center gap-3 py-12">
-								<Typography className="text-sm font-semibold" color="primary">
+								<Typography className=" font-semibold" color="primary">
 									{t('no-vacancies-found', 'No vacancies found!')}
 								</Typography>
 								<img
@@ -1158,15 +1158,15 @@ function DashboardPageView() {
 												sx={{ width: 40, height: 40 }}
 											/>
 											<div>
-												<Typography className="text-sm font-semibold">
+												<Typography className=" font-semibold">
 													{row?.Applicant?.FirstName} {row?.Applicant?.LastName}
 												</Typography>
-												<Typography className="text-xs" color="text.secondary">
+												<Typography className="text-sm" color="text.secondary">
 													{row?.VacancyTitle}
 												</Typography>
 											</div>
 										</div>
-										<Typography className="text-xs" color="text.secondary">
+										<Typography className="text-sm" color="text.secondary">
 											{formatRelativeDate(row?.Applicant?.ApplicationDate)}
 										</Typography>
 									</div>
@@ -1174,7 +1174,7 @@ function DashboardPageView() {
 							</div>
 						) : (
 							<div className="flex flex-col items-center justify-center gap-3 py-12">
-								<Typography className="text-sm font-semibold" color="primary">
+								<Typography className=" font-semibold" color="primary">
 									{t('no-applicants-found', 'No applicants found!')}
 								</Typography>
 								<img
@@ -1200,15 +1200,15 @@ function DashboardPageView() {
 													sx={{ width: 40, height: 40 }}
 												/>
 												<div>
-													<Typography className="text-sm font-semibold">
+													<Typography className=" font-semibold">
 														{candidate?.FirstName} {candidate?.LastName}
 													</Typography>
-													<Typography className="text-xs" color="text.secondary">
+													<Typography className="text-sm" color="text.secondary">
 														{candidate?.Profession}
 													</Typography>
 												</div>
 											</div>
-											<Typography className="text-xs" color="text.secondary">
+											<Typography className="text-sm" color="text.secondary">
 												{formatRelativeDate(candidate?.Created)}
 											</Typography>
 										</div>
@@ -1216,7 +1216,7 @@ function DashboardPageView() {
 								</div>
 							) : (
 								<div className="flex flex-col items-center justify-center gap-3 py-12">
-									<Typography className="text-sm font-semibold" color="primary">
+									<Typography className=" font-semibold" color="primary">
 										{t('no-candidates-found', 'No Candidates found')}
 									</Typography>
 									<img
@@ -1243,11 +1243,11 @@ function DashboardPageView() {
 													sx={{ width: 40, height: 40 }}
 												/>
 												<div>
-													<Typography className="text-sm font-semibold">{profile?.Title}</Typography>
+													<Typography className=" font-semibold">{profile?.Title}</Typography>
 													{renderStars(profile?.Rating)}
 												</div>
 											</div>
-											<Typography className="text-xs" color="text.secondary">
+											<Typography className="text-sm" color="text.secondary">
 												{profile?.Views ?? 0} {t('views', 'Views')}
 											</Typography>
 										</div>
@@ -1255,7 +1255,7 @@ function DashboardPageView() {
 								</div>
 							) : (
 								<div className="flex flex-col items-center justify-center gap-3 py-12">
-									<Typography className="text-sm font-semibold" color="primary">
+									<Typography className=" font-semibold" color="primary">
 										{t('no-profiles-found', 'No profiles found!')}
 									</Typography>
 									<img
@@ -1277,14 +1277,14 @@ function DashboardPageView() {
 										<div key={`${candidate?.Id || index}`} className="flex items-center justify-between gap-4 pb-4">
 											<div>
 												<Typography
-													className="text-sm font-semibold"
+													className=" font-semibold"
 													onClick={() => candidate?.Puid && navigate(`/candidates/profiles/${candidate.Puid}`)}
 													component="span"
 													sx={{ cursor: candidate?.Puid ? 'pointer' : 'default' }}
 												>
 													{candidate?.Title}
 												</Typography>
-												<Typography className="text-xs" color="text.secondary">
+												<Typography className="text-sm" color="text.secondary">
 													{candidate?.Occupation || candidate?.ProfileTageLine || ''}
 												</Typography>
 												<div className="mt-2 flex items-center gap-2">
@@ -1297,7 +1297,7 @@ function DashboardPageView() {
 													) : null}
 												</div>
 											</div>
-											<Typography className="text-xs" color="text.secondary">
+											<Typography className="text-sm" color="text.secondary">
 												{formatRelativeDate(candidate?.CreateDate)}
 											</Typography>
 										</div>
@@ -1305,7 +1305,7 @@ function DashboardPageView() {
 								</div>
 							) : (
 								<div className="flex flex-col items-center justify-center gap-3 py-12">
-									<Typography className="text-sm font-semibold" color="primary">
+									<Typography className=" font-semibold" color="primary">
 										{t('no-candidates-found', 'No Candidates found')}
 									</Typography>
 									<img

@@ -70,7 +70,7 @@ Theme variables
     --text-md: 0.75rem;    /* 12px */
     --text-md-line-height: calc(1.25 / 0.75);
 
-    --text-base: 0.8125rem;/* 13px */
+    --text-base: 0.8125rem; /*13px*/
     --text-base-line-height: calc(1.5 / 0.8125);
 
     --text-lg: 0.875rem;   /* 14px */
@@ -131,3 +131,8 @@ Tables styles
 @import './tables.css';
 
 @import './tiptap.css';
+
+.font-public-sans,
+.font-public-sans * {
+  font-family: 'Public Sans', sans-serif !important;
+}

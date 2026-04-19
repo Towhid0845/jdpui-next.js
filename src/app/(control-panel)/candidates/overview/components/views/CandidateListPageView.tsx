@@ -44,6 +44,8 @@ import {
 	inviteCandidateToOpenAccount
 } from '@/api/services/candidates';
 import { getDashboardCandidateChart } from '@/api/services/dashboard';
+import clsx from 'clsx';
+import useNavigate from '@fuse/hooks/useNavigate';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
 	'& .FusePageSimple-header': {
@@ -63,7 +65,8 @@ function StatCard({
 	iconColor,
 	value,
 	label,
-	percentage
+	percentage,
+	borderColor
 }: {
 	icon: string;
 	iconBg: string;
@@ -71,10 +74,14 @@ function StatCard({
 	value: number;
 	label: string;
 	percentage?: number;
+	borderColor?: string;
 }) {
 	return (
 		<Paper
-			className="flex items-center gap-3 rounded-lg p-4"
+			className={clsx(
+							"flex items-center gap-3 rounded-lg p-4 border-b-2",
+							borderColor ? `${borderColor}` : ''
+						)}
 			variant="outlined"
 		>
 			<div className={`flex h-12 w-12 items-center justify-center rounded-lg ${iconBg}`}>
@@ -324,7 +331,7 @@ function CandidateListPageView() {
 		message: string;
 		onConfirm: () => void;
 	}>({ open: false, title: '', message: '', onConfirm: () => {} });
-
+	const navigate = useNavigate();
 	const listPayload = useMemo(
 		() => ({
 			PageSize: pageSize,
@@ -437,36 +444,40 @@ function CandidateListPageView() {
 					{chartData && (
 						<div className="grid grid-cols-2 gap-4 md:grid-cols-4">
 							<StatCard
-								icon="lucide:user-circle"
+								icon="lucide:circle-user"
 								iconBg="bg-blue-50"
 								iconColor="text-blue-600"
 								value={chartData.TotalCandidates ?? 0}
-								label="Available Profiles"
+								label="Total Candidates"
 								percentage={chartData.OccupiedCount}
+								borderColor="border-b-blue-200"
 							/>
 							<StatCard
 								icon="lucide:briefcase"
 								iconBg="bg-green-50"
 								iconColor="text-green-600"
 								value={chartData.AvailableCandidates ?? 0}
-								label="Looking for a Job"
+								label="Available Candidates"
 								percentage={chartData.AvailableCandidatesPercentage}
+								borderColor="border-b-green-200"
 							/>
 							<StatCard
 								icon="lucide:user-plus"
 								iconBg="bg-amber-50"
 								iconColor="text-amber-600"
 								value={chartData.LookingForCount ?? 0}
-								label="New Profiles"
+								label="Looking for a Job"
 								percentage={chartData.LookingForPercentage}
+								borderColor="border-b-amber-200"
 							/>
 							<StatCard
 								icon="lucide:users"
 								iconBg="bg-indigo-50"
 								iconColor="text-indigo-600"
 								value={chartData.NewCandidates ?? 0}
-								label="Total Profiles"
+								label="New Candidates"
 								percentage={chartData.NewCandidatesPercentage}
+								borderColor="border-b-indigo-200"
 							/>
 						</div>
 					)}
@@ -530,7 +541,7 @@ function CandidateListPageView() {
 						</div>
 					) : (
 						<>
-							<div className="flex flex-col divide-y rounded-xl border">
+							{/* <div className="flex flex-col divide-y rounded-xl border">
 								{candidates.map((candidate) => {
 									const displayName =
 										candidate.FullName ||
@@ -594,6 +605,87 @@ function CandidateListPageView() {
 														}}
 													>
 														<FuseSvgIcon size={20}>lucide:ellipsis-vertical</FuseSvgIcon>
+													</IconButton>
+												)}
+											</div>
+										</div>
+									);
+								})}
+							</div> */}
+
+							<div className="flex flex-col divide-y rounded-xl border bg-white font-public-sans">
+							{candidates.map((candidate) => {
+								const displayName = candidate.FullName || `${candidate.FirstName || ''} ${candidate.LastName || ''}`.trim() || candidate.Email;
+								const isBusy = actionLoading === candidate.Cid;
+
+									return (
+										<div
+											key={candidate.Cid || candidate.Email}
+											className="grid grid-cols-12 items-center gap-4 p-4 hover:bg-sky-100 transition-colors"
+											onClick={() => {
+												navigate(`/candidates/overview/${candidate.Cid}`);
+											}}
+										>
+											{/* COLUMN 1: Profile & Name (Span 3) */}
+											<div className="col-span-12 flex items-center gap-3 md:col-span-3">
+												<Avatar
+													src={candidate.ProfilePic || undefined}
+													className="h-12 w-12 bg-blue-500 text-white font-bold"
+												>
+													{displayName[0]?.toUpperCase()}
+												</Avatar>
+												<div className="flex flex-col overflow-hidden">
+													<Typography className="font-semibold truncate text-[15px]">
+														{displayName}
+													</Typography>
+													<Typography variant="caption" className="text-gray-400">
+														{candidate.Addressline1 || 'Anywhere'}
+													</Typography>
+												</div>
+											</div>
+
+											{/* COLUMN 2: Profession & Status (Span 3) */}
+											<div className="col-span-12 flex flex-col md:col-span-3">
+												<Typography className="text-[14px] font-medium text-gray-700">
+													{candidate.Profession || 'Profession not set'}
+												</Typography>
+												<Typography className="text-[13px] text-orange-400">
+													{candidate.AvailabilityStatusText || 'Status not set'}
+												</Typography>
+											</div>
+
+											{/* COLUMN 3: Contact Info (Span 3) */}
+											<div className="col-span-12 flex flex-col md:col-span-3">
+												<Typography className="text-[14px] text-gray-600 truncate">
+													{candidate.Email}
+												</Typography>
+												<Typography className="text-[14px] text-gray-500">
+													{candidate.Phone || candidate.Mobile || 'No phone'}
+												</Typography>
+											</div>
+
+											{/* COLUMN 4: Date & Actions (Span 3) */}
+											<div className="col-span-12 flex items-center justify-end gap-6 md:col-span-3">
+												<Typography className="text-[14px] font-medium text-gray-600">
+													{new Date(candidate.Created).toLocaleDateString('en-US', {
+														month: 'short',
+														day: 'numeric',
+														year: 'numeric'
+													})}
+												</Typography>
+
+												{isBusy ? (
+													<CircularProgress size={20} />
+												) : (
+													<IconButton
+														size="small"
+														className="text-gray-400 hover:text-gray-600"
+														onClick={(e) => {
+															setMenuAnchor(e.currentTarget);
+															setMenuCandidate(candidate);
+														}}
+													>
+														<FuseSvgIcon size={20}>lucide:circle-user</FuseSvgIcon>
 													</IconButton>
 												)}
 											</div>

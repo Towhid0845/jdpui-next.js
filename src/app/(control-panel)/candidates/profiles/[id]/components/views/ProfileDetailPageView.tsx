@@ -77,7 +77,7 @@ function ProfileDetailPageView({ puid }: ProfileDetailPageViewProps) {
 						Back
 					</Button>
 					<div className="flex flex-col gap-1">
-						<Typography variant="h6">{displayName || 'Profile Detail'}</Typography>
+						<Typography variant="h6">{'Profile Detail'}</Typography>
 						<PageBreadcrumb />
 					</div>
 				</div>
@@ -93,244 +93,224 @@ function ProfileDetailPageView({ puid }: ProfileDetailPageViewProps) {
 					) : !profile ? (
 						<Alert severity="warning">Profile not found.</Alert>
 					) : (
-						<div className="mx-auto flex max-w-4xl flex-col gap-6">
-							{/* Profile Header */}
-							<Paper
-								className="flex flex-col gap-4 rounded-xl p-6 md:flex-row md:items-start"
-								variant="outlined"
-							>
+						<>
+							<Paper className="flex flex-col gap-6 rounded-xl p-6 md:flex-row md:items-center mb-5" variant="outlined">
+								{/* Avatar */}
 								<Avatar
-									src={profile.ProfileImage || undefined}
-									className="h-24 w-24 text-3xl"
+									src={profile.ProfilePicture || undefined}
+									variant="rounded"
+									className="h-24 w-24 rounded-lg border bg-gray-50"
 								>
 									{displayName[0]?.toUpperCase()}
 								</Avatar>
-								<div className="flex flex-1 flex-col gap-2">
-									<div className="flex items-center gap-2">
-										<Typography
-											variant="h5"
-											className="font-semibold"
-										>
-											{displayName}
+
+								{/* Main Info Area */}
+								<div className="flex flex-1 flex-col gap-3">
+									<div className="flex items-center justify-between">
+										<Typography variant="h6" className="font-bold text-gray-800">
+											{profile.Title || displayName}
 										</Typography>
-										{profile.IsVerified && (
-											<FuseSvgIcon
-												size={20}
-												color="success"
-											>
-												lucide:badge-check
-											</FuseSvgIcon>
-										)}
+
+										{/* Verified Badge (Top Right) */}
+										<div className="flex items-center gap-1 rounded bg-green-50 px-2 py-0.5 text-green-600 border border-green-100">
+											<FuseSvgIcon size={16}>lucide:badge-check</FuseSvgIcon>
+											<Typography variant="caption" className="font-bold">Verified</Typography>
+										</div>
 									</div>
-									{profile.Title && (
-										<Typography
-											variant="body1"
-											color="text.secondary"
+
+									{/* Stats Row with Vertical Dividers */}
+									<div className="flex flex-wrap items-center gap-4 text-gray-600">
+										<div>
+											<Typography variant="body2" className="font-bold">
+												{profile.MinExpectedSalary} {profile.MinExpectedSalaryCurrency}/Monthly
+											</Typography>
+											<Typography variant="caption" className="text-gray-400">Expected Salary</Typography>
+										</div>
+
+										<Divider orientation="vertical" flexItem className="hidden md:block h-8 self-center" />
+
+										<div className="flex items-center gap-2">
+											<FuseSvgIcon size={18}>lucide:trending-up</FuseSvgIcon>
+											<Typography variant="body2" className="font-medium">Looking for a job</Typography>
+										</div>
+
+										<Divider orientation="vertical" flexItem className="hidden md:block h-8 self-center" />
+
+										<div className="flex items-center gap-2 text-blue-700">
+											<FuseSvgIcon size={18}>lucide:map-pin</FuseSvgIcon>
+											<Typography variant="body2" className="font-medium">{profile.Nationality || 'Anywhere'}</Typography>
+										</div>
+
+										{/* Spacer to push rating to the end */}
+										<div className="flex-1" />
+
+										<div className="flex flex-col items-end">
+											<Rating value={profile.Rating || 0} readOnly size="small" />
+											<Typography variant="caption" color="text.secondary">({profile.RatingCount || 0})</Typography>
+										</div>
+									</div>
+
+									{/* Action Buttons Row */}
+									<div className="flex flex-wrap items-center gap-3 mt-2">
+										<Button
+											variant="contained"
+											color="primary"
+											className="bg-[#1e4e79] hover:bg-[#163a5a] px-6 py-2 rounded-md capitalize"
+											startIcon={<FuseSvgIcon size={18}>lucide:check</FuseSvgIcon>}
 										>
-											{profile.Title}
-										</Typography>
-									)}
-									<div className="flex flex-wrap items-center gap-3">
-										{profile.Country && (
-											<div className="flex items-center gap-1">
-												<FuseSvgIcon
-													size={16}
-													className="text-gray-500"
-												>
-													lucide:map-pin
-												</FuseSvgIcon>
-												<Typography variant="body2">{profile.Country}</Typography>
-											</div>
-										)}
-										{profile.Rating !== undefined && profile.Rating > 0 && (
-											<div className="flex items-center gap-1">
-												<Rating
-													value={profile.Rating}
-													precision={0.5}
-													size="small"
-													readOnly
-												/>
-												{profile.RatingCount !== undefined && (
-													<Typography
-														variant="caption"
-														color="text.secondary"
-													>
-														({profile.RatingCount})
-													</Typography>
-												)}
-											</div>
-										)}
-										{profile.ExpectedSalaryText && (
-											<Chip
-												label={profile.ExpectedSalaryText}
-												size="small"
+											Buy Profile ({profile.SalePrice} {profile.SaleCurrency})
+										</Button>
+
+										<div className="flex-1 md:hidden" />
+
+										<div className="flex gap-2 ml-auto">
+											<Button
 												variant="outlined"
-											/>
-										)}
+												size="medium"
+												className="text-blue-500 border-blue-500 hover:bg-blue-50 capitalize"
+												startIcon={<FuseSvgIcon size={18}>lucide:thumbs-up</FuseSvgIcon>}
+											>
+												Like
+											</Button>
+											<Button
+												variant="outlined"
+												size="medium"
+												className="text-pink-500 border-pink-500 hover:bg-pink-50 capitalize"
+												startIcon={<FuseSvgIcon size={18}>lucide:heart</FuseSvgIcon>}
+											>
+												Favorite
+											</Button>
+										</div>
 									</div>
-									{profile.AvailableInText && (
-										<Typography
-											variant="body2"
-											color="text.secondary"
-										>
-											Available in: {profile.AvailableInText}
-										</Typography>
-									)}
 								</div>
 							</Paper>
+							
+							<div className="mx-auto grid grid-cols-12 gap-6 font-public-sans">
 
-							{/* About */}
-							{profile.AboutText1 && (
-								<Paper
-									className="rounded-xl p-6"
-									variant="outlined"
-								>
-									<SectionTitle>About</SectionTitle>
-									<div
-										className="prose prose-sm max-w-none"
-										dangerouslySetInnerHTML={{ __html: profile.AboutText1 }}
-									/>
-								</Paper>
-							)}
+								{/* LEFT SIDEBAR (Col span 4) */}
+								<div className="col-span-12 flex flex-col gap-6 md:col-span-4">
 
-							{/* Skills */}
-							{profile.Skills && profile.Skills.length > 0 && (
-								<Paper
-									className="rounded-xl p-6"
-									variant="outlined"
-								>
-									<SectionTitle>Skills</SectionTitle>
-									<div className="flex flex-wrap gap-2">
-										{profile.Skills.map((skill, i) => (
-											<Chip
-												key={i}
-												label={skill}
-												variant="outlined"
+									{/* Languages & Nationality */}
+									<Paper className="rounded-xl p-6" variant="outlined">
+										<div className="mb-6">
+											<SectionTitle>
+												<div className="flex items-center gap-2"><FuseSvgIcon size={20}>lucide:user</FuseSvgIcon> About</div>
+											</SectionTitle>
+											<div className="mt-4 space-y-4">
+												<div>
+													<Typography variant="caption" className="font-bold text-gray-400">Languages</Typography>
+													<Typography variant="body2">{profile.Languages?.join(', ') || '-'}</Typography>
+												</div>
+												<div>
+													<Typography variant="caption" className="font-bold text-gray-400">Nationality</Typography>
+													<Typography variant="body2">{profile.Nationality || '-'}</Typography>
+												</div>
+											</div>
+										</div>
+									</Paper>
+
+									{/* Skills with Star Ratings */}
+									<Paper className="rounded-xl p-6" variant="outlined">
+										<SectionTitle>
+											<div className="flex items-center gap-2"><FuseSvgIcon size={20}>lucide:lightbulb</FuseSvgIcon> Skills</div>
+										</SectionTitle>
+										<div className="mt-4 divide-y">
+											{profile.Skills?.map((skill) => (
+												<div key={skill.ProfileSkillId} className="flex items-center justify-between py-3">
+													<Typography variant="body2" className="pr-4 text-gray-700">{skill.Name}</Typography>
+													<Rating value={skill.Rating} readOnly size="small" />
+												</div>
+											))}
+										</div>
+									</Paper>
+
+									{/* Certificates */}
+									<Paper className="rounded-xl p-6" variant="outlined">
+										<SectionTitle>
+											<div className="flex items-center gap-2"><FuseSvgIcon size={20}>lucide:scroll-text</FuseSvgIcon> Certificates</div>
+										</SectionTitle>
+										<div className="mt-4 space-y-4">
+											{profile.Certificates?.map((cert) => (
+												<div key={cert.ID} className="flex flex-col">
+													<div className="flex items-center gap-2">
+														<div className="h-2 w-2 rounded-full bg-green-500" />
+														<Typography variant="body2" className="font-medium">{cert.CertificationName}</Typography>
+													</div>
+													{cert.DoesNotExpire && (
+														<Typography variant="caption" className="pl-4 text-gray-400">- Does not expire</Typography>
+													)}
+												</div>
+											))}
+										</div>
+									</Paper>
+								</div>
+
+								{/* MAIN CONTENT (Col span 8) */}
+								<div className="col-span-12 flex flex-col gap-6 md:col-span-8">
+
+									{/* Career Objective (from Assessmentses) */}
+									{profile.Assessmentses?.map((assessment) => (
+										<Paper key={assessment.ProfileAssessmentId} className="rounded-xl p-6" variant="outlined">
+											<SectionTitle>
+												<div className="flex items-center gap-2 text-blue-600">
+													<FuseSvgIcon size={20}>lucide:flag</FuseSvgIcon> {assessment.Title}
+												</div>
+											</SectionTitle>
+											<div
+												className="text-sm text-gray-600"
+												dangerouslySetInnerHTML={{ __html: assessment.Text }}
 											/>
-										))}
-									</div>
-								</Paper>
-							)}
+										</Paper>
+									))}
 
-							{/* Professional Experience */}
-							{profile.ProfessionalExperiences && profile.ProfessionalExperiences.length > 0 && (
-								<Paper
-									className="rounded-xl p-6"
-									variant="outlined"
-								>
-									<SectionTitle>Professional Experience</SectionTitle>
-									<div className="flex flex-col gap-4">
-										{profile.ProfessionalExperiences.map((exp, i) => (
-											<div key={i}>
-												{i > 0 && <Divider className="mb-4" />}
-												<Typography className="font-medium">
-													{((exp as Record<string, unknown>).Title as string) || 'Position'}
-												</Typography>
-												{(exp as Record<string, unknown>).CompanyName && (
-													<Typography
-														variant="body2"
-														color="text.secondary"
-													>
-														{(exp as Record<string, unknown>).CompanyName as string}
-													</Typography>
-												)}
-												{(exp as Record<string, unknown>).Description && (
-													<Typography
-														variant="body2"
-														className="mt-1"
-													>
-														{(exp as Record<string, unknown>).Description as string}
-													</Typography>
-												)}
+									{/* Professional Experience */}
+									<Paper className="rounded-xl p-6" variant="outlined">
+										<SectionTitle>
+											<div className="flex items-center gap-2 text-blue-600">
+												<FuseSvgIcon size={20}>lucide:briefcase</FuseSvgIcon> Professional Experiences
 											</div>
-										))}
-									</div>
-								</Paper>
-							)}
-
-							{/* Education */}
-							{profile.Educations && profile.Educations.length > 0 && (
-								<Paper
-									className="rounded-xl p-6"
-									variant="outlined"
-								>
-									<SectionTitle>Education</SectionTitle>
-									<div className="flex flex-col gap-4">
-										{profile.Educations.map((edu, i) => (
-											<div key={i}>
-												{i > 0 && <Divider className="mb-4" />}
-												<Typography className="font-medium">
-													{((edu as Record<string, unknown>).DegreeName as string) ||
-														((edu as Record<string, unknown>).DegreeType as string) ||
-														'Degree'}
-												</Typography>
-												{(edu as Record<string, unknown>).InstituteName && (
-													<Typography
-														variant="body2"
-														color="text.secondary"
-													>
-														{(edu as Record<string, unknown>).InstituteName as string}
+										</SectionTitle>
+										<div className="mt-4 space-y-6">
+											{profile.ProfessionalExperiences?.map((exp) => (
+												<div key={exp.ProfileProfessionalExperienceId} className="relative pl-6">
+													<div className="absolute left-0 top-1.5 h-2 w-2 rounded-full bg-green-500" />
+													<Typography className="font-bold">{exp.WorkTitle}</Typography>
+													<Typography variant="body2" className="text-gray-500">{exp.Description}</Typography>
+													<Typography variant="caption" className="mt-1 block text-blue-500">
+														{exp.WorkPlace}
 													</Typography>
-												)}
-											</div>
-										))}
-									</div>
-								</Paper>
-							)}
-
-							{/* Languages */}
-							{profile.Languages && profile.Languages.length > 0 && (
-								<Paper
-									className="rounded-xl p-6"
-									variant="outlined"
-								>
-									<SectionTitle>Languages</SectionTitle>
-									<div className="flex flex-wrap gap-2">
-										{profile.Languages.map((lang, i) => (
-											<Chip
-												key={i}
-												label={
-													((lang as Record<string, unknown>).Name as string) ||
-													((lang as Record<string, unknown>).LanguageName as string) ||
-													'Language'
-												}
-												variant="outlined"
-											/>
-										))}
-									</div>
-								</Paper>
-							)}
-
-							{/* Certificates */}
-							{profile.Certificates && profile.Certificates.length > 0 && (
-								<Paper
-									className="rounded-xl p-6"
-									variant="outlined"
-								>
-									<SectionTitle>Certificates</SectionTitle>
-									<div className="flex flex-col gap-4">
-										{profile.Certificates.map((cert, i) => (
-											<div key={i}>
-												{i > 0 && <Divider className="mb-4" />}
-												<Typography className="font-medium">
-													{((cert as Record<string, unknown>).Name as string) ||
-														((cert as Record<string, unknown>).Title as string) ||
-														'Certificate'}
-												</Typography>
-												{(cert as Record<string, unknown>).Issuer && (
-													<Typography
-														variant="body2"
-														color="text.secondary"
-													>
-														{(cert as Record<string, unknown>).Issuer as string}
+													<Typography variant="caption" className="text-gray-400">
+														{new Date(exp.DateFrom).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} -
+														{exp.DateTo ? new Date(exp.DateTo).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Present'}
 													</Typography>
-												)}
+												</div>
+											))}
+										</div>
+									</Paper>
+
+									{/* Education */}
+									<Paper className="rounded-xl p-6" variant="outlined">
+										<SectionTitle>
+											<div className="flex items-center gap-2 text-blue-600">
+												<FuseSvgIcon size={20}>lucide:graduation-cap</FuseSvgIcon> Educations
 											</div>
-										))}
-									</div>
-								</Paper>
-							)}
-						</div>
+										</SectionTitle>
+										<div className="mt-4 space-y-6">
+											{profile.Educations?.map((edu) => (
+												<div key={edu.Id} className="relative pl-6">
+													<div className="absolute left-0 top-1.5 h-2 w-2 rounded-full bg-green-500" />
+													<Typography className="font-bold">{edu.FieldOfStudy}</Typography>
+													<Typography variant="body2" className="text-gray-600">{edu.Institution}</Typography>
+													<Typography variant="caption" className="text-gray-400">
+														{new Date(edu.DateFrom).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+													</Typography>
+												</div>
+											))}
+										</div>
+									</Paper>
+								</div>
+							</div>
+						</>
 					)}
 				</div>
 			}

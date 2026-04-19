@@ -311,7 +311,8 @@ export const defaultThemeOptions: DefaultThemeOptions = {
 				root: {
 					width: spacing(36),
 					height: spacing(36),
-					fontSize: '0.8125rem' // 13px
+					// fontSize: '0.9375rem' // 13px
+					fontSize: '1rem' // 13px
 				}
 			}
 		},
@@ -386,8 +387,8 @@ export const defaultThemeOptions: DefaultThemeOptions = {
 					minWidth: spacing(32), // 2rem 32px
 					padding: `${spacing(6)} ${spacing(12)}`, // 6px 12px
 					'&:active': {
-						paddingTop: `calc(${spacing(6)} + ${spacing(1)})`, // 0.0078125rem = 1px
-						paddingBottom: `calc(${spacing(6)} - ${spacing(1)})` // 0.0078125rem = 1px
+						paddingTop: `calc(${spacing(6)} + ${spacing(1)})`, // 0.0079375rem = 1px
+						paddingBottom: `calc(${spacing(6)} - ${spacing(1)})` // 0.0079375rem = 1px
 					}
 				},
 				sizeLarge: {
@@ -916,10 +917,10 @@ export const mustHaveThemeOptions = {
 		htmlFontSize: 16,
 		fontSize: 13,
 		body1: {
-			fontSize: '0.8125rem'
+			fontSize: '.875rem' // 14px
 		},
 		body2: {
-			fontSize: '0.8125rem'
+			fontSize: '0.875rem' // 14px
 		}
 	}
 };

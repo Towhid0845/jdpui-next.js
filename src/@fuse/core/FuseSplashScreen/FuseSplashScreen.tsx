@@ -12,7 +12,7 @@ function FuseSplashScreen() {
 			<div className="logo">
 				<img
 					width="128"
-					src="/assets/images/logo/logo.svg"
+					src="/assets/images/logo/jobdesk_logo.svg"
 					alt="logo"
 				/>
 			</div>

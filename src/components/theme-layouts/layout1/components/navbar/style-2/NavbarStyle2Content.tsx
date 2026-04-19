@@ -112,8 +112,8 @@ function NavbarStyle2Content(props: NavbarStyle2ContentProps) {
 					className="flex h-full shrink-0 flex-col items-center"
 				>
 					<img
-						className="my-4 w-6"
-						src="/assets/images/logo/logo.svg"
+						className="my-4 w-32"
+						src="/assets/images/logo/jobdesk_logo.svg"
 						alt="logo"
 					/>
 

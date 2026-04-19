@@ -243,7 +243,7 @@ function FusePageSimple(props: FusePageSimpleProps) {
 				rightSidebarProps={{ ...sidebarPropsDefaults, ...rightSidebarProps }}
 			>
 				<div className="z-10 flex h-full flex-auto flex-col">
-					<div className="FusePageSimple-wrapper">
+					<div className="FusePageSimple-wrapper font-public-sans">
 						<FusePageSimpleSidebar
 							position="left"
 							ref={leftSidebarRef}

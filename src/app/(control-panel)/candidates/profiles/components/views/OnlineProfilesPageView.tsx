@@ -26,6 +26,7 @@ import PageBreadcrumb from '@/components/PageBreadcrumb';
 import { useSystemData } from '@/contexts/SystemDataContext';
 import { searchProfiles } from '@/api/services/profiles';
 import { getBasicChartForSearch } from '@/api/services/dashboard';
+import clsx from 'clsx';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
 	'& .FusePageSimple-header': {
@@ -45,7 +46,8 @@ function StatCard({
 	iconColor,
 	value,
 	label,
-	percentage
+	percentage,
+	borderColor
 }: {
 	icon: string;
 	iconBg: string;
@@ -53,10 +55,15 @@ function StatCard({
 	value: number;
 	label: string;
 	percentage?: number;
+	borderColor?: string;
 }) {
 	return (
+		// Each card should get border-bottom with {iconColor} this color
 		<Paper
-			className="flex items-center gap-3 rounded-lg p-4"
+			className={clsx(
+				"flex items-center gap-3 rounded-lg p-4 border-b-2",
+				borderColor ? `${borderColor}` : ''
+			)}
 			variant="outlined"
 		>
 			<div className={`flex h-12 w-12 items-center justify-center rounded-lg ${iconBg}`}>
@@ -79,7 +86,7 @@ function StatCard({
 					color="text.secondary"
 				>
 					{label}
-					{percentage !== undefined && percentage > 0 && ` (${percentage}%)`}
+					{percentage !== undefined && percentage >= 0 && ` (${percentage}%)`}
 				</Typography>
 			</div>
 		</Paper>
@@ -172,12 +179,13 @@ function OnlineProfilesPageView() {
 					{chartData && (
 						<div className="grid grid-cols-2 gap-4 md:grid-cols-4">
 							<StatCard
-								icon="lucide:user-circle"
+								icon="lucide:circle-user"
 								iconBg="bg-blue-50"
 								iconColor="text-blue-600"
 								value={chartData.AvailableCandidates ?? 0}
 								label="Available Profiles"
 								percentage={chartData.AvailableCandidatesPercentage}
+								borderColor="border-b-blue-600"
 							/>
 							<StatCard
 								icon="lucide:briefcase"
@@ -186,6 +194,7 @@ function OnlineProfilesPageView() {
 								value={chartData.LookingForCount ?? 0}
 								label="Looking for a Job"
 								percentage={chartData.LookingForPercentage}
+								borderColor="border-b-green-600"
 							/>
 							<StatCard
 								icon="lucide:user-plus"
@@ -194,6 +203,7 @@ function OnlineProfilesPageView() {
 								value={chartData.NewCandidates ?? 0}
 								label="New Profiles"
 								percentage={chartData.NewCandidatesPercentage}
+								borderColor="border-b-amber-600"
 							/>
 							<StatCard
 								icon="lucide:users"
@@ -201,6 +211,7 @@ function OnlineProfilesPageView() {
 								iconColor="text-indigo-600"
 								value={chartData.TotalCandidates ?? 0}
 								label="Total Profiles"
+								borderColor='border-b-indigo-600'
 							/>
 						</div>
 					)}
@@ -293,7 +304,7 @@ function OnlineProfilesPageView() {
 									return (
 										<Paper
 											key={profile.Puid}
-											className="group flex flex-row items-center gap-4 rounded-none border-b p-4 transition-colors hover:bg-gray-50 cursor-pointer"
+											className="group flex flex-row items-center gap-4 rounded-none border-b p-4 transition-colors hover:bg-sky-100 cursor-pointer"
 											variant="elevation"
 											elevation={0}
 											onClick={() => {
@@ -347,7 +358,7 @@ function OnlineProfilesPageView() {
 											{/* 4. Date Section */}
 											<div className="flex flex-1 justify-center">
 												<Typography variant="body2" color="text.secondary">
-													{profile.AvailableFrom ? new Date(profile.AvailableFrom).toLocaleDateString('en-US', {
+													{profile?.AvailableFrom ? new Date(profile?.AvailableFrom).toLocaleDateString('en-US', {
 														year: 'numeric',
 														month: 'short',
 														day: 'numeric'
@@ -367,7 +378,7 @@ function OnlineProfilesPageView() {
 											{/* 6. Relative Time */}
 											<div className="flex flex-1 justify-center">
 												<Typography variant="body2" color="text.secondary">
-													{getRelativeTime(profile.AvailableFrom)}
+													{getRelativeTime(profile?.AvailableFrom)}
 												</Typography>
 											</div>
 
